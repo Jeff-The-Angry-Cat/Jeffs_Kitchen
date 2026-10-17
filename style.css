@@ -1,0 +1,147 @@
+/* ============================================
+   HALF BAKED — the look of the whole site
+   Change the colours below to restyle everything.
+   ============================================ */
+
+:root {
+  --background: #fbf6ee;   /* warm cream page */
+  --card: #ffffff;         /* idea cards */
+  --text: #2f2a26;         /* main writing */
+  --muted: #7a6f66;        /* softer grey-brown text */
+  --accent: #b5652b;       /* crust brown — links and highlights */
+  --line: #eadfce;         /* thin borders */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Top of every page ---------- */
+header {
+  padding: 32px 0 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 36px;
+}
+
+header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.site-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-name span { color: var(--accent); }
+
+nav a {
+  margin-left: 18px;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+}
+
+nav a:first-child { margin-left: 0; }
+nav a:hover { color: var(--accent); }
+
+/* ---------- General writing ---------- */
+h1 { font-size: 34px; line-height: 1.25; margin: 0 0 12px; }
+h2 { font-size: 24px; margin: 36px 0 10px; }
+
+a { color: var(--accent); }
+
+.intro {
+  font-size: 20px;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+/* ---------- Idea cards on the home page ---------- */
+.idea-card {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.idea-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.idea-card h3 { margin: 6px 0 4px; font-size: 21px; }
+.idea-card p  { margin: 0; color: var(--muted); }
+
+/* ---------- Baking status labels ---------- */
+.status {
+  display: inline-block;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.status.mixing { background: #f1e7d8; color: #8a6a3f; }  /* raw idea */
+.status.oven   { background: #fbe1c8; color: #a2531b; }  /* being worked on */
+.status.tasting{ background: #e3efd9; color: #4f7a35; }  /* ready for feedback */
+
+/* ---------- Single idea page ---------- */
+.meta {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+.feedback {
+  background: var(--card);
+  border: 1px dashed var(--accent);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin: 44px 0;
+}
+
+.feedback h2 { margin-top: 0; }
+
+/* ---------- Bottom of every page ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 56px;
+  padding: 24px 0 40px;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 500px) {
+  body { font-size: 17px; }
+  h1 { font-size: 28px; }
+  .site-name { font-size: 24px; }
+}
