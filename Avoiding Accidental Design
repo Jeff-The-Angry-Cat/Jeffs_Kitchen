@@ -1,0 +1,77 @@
+# Avoiding Accidental Design: service, architecture and organisation design in a security department
+
+Oct 18, 2026 · @Adam
+
+A shorter version of the working draft for colleagues and peers. Full working draft: Doc
+
+**The argument in brief.** Enterprise architecture, organisation design and service design are three views of one act: designing how an organisation turns intent into value for the people it serves. The service is where that value is released, so it should set the test the other two are judged by. Held in healthy tension, steered by strategy and bounded by policy, the three disciplines can design the whole rather than three disconnected parts.
+
+## Three disciplines, one object
+
+Each discipline claims to shape the organisation, but each enters from a different end. The architect starts from what the organisation must be able to do, and the information and technology that make it possible. The organisation designer starts from how people must be grouped, governed and motivated to do it. The service designer starts outside the organisation altogether, with what a user is trying to do and the journey they take to do it.
+
+They are usually practised by different people, in different functions, with different books on the shelf. Each tends to hold the others' domains constant: architects draw capability maps that assume today's structure, and organisation designers draw structures that assume today's systems. Conway's law explains the cost. Organisations produce systems that mirror their communication structures, so if you design one without the other, you have still designed both. You have just designed one of them by accident.
+
+The three already share a vocabulary (capability, value stream, service, operating model), but each uses those words for a different purpose. Making the purposes explicit is most of the work of joining them up.
+
+## Service sets the test
+
+Service design is the least mature of the three disciplines, but it deserves the most influence. The service is where value is released to the customer. If no one is served, there is no business, and capability maps and org charts have nothing to be for.
+
+Primacy of purpose is not the same as primacy of discipline, though. A service that works for one user but cannot be built coherently, run affordably or staffed sustainably soon stops working for everyone. The design-thinking triad captures the balance: a good service is desirable, feasible and viable at once. Service design speaks for desirability, enterprise architecture for feasibility, and organisation design for viability.
+
+The working rule is therefore simple: **service design sets the test; architecture and organisation design set the terms.** The service decides what good looks like. The other two decide what it costs and whether it lasts.
+
+In a security department this matters more than it first appears. The customers are colleagues, the organisation's own customers and sometimes regulators, and the value released is mostly harm that did not happen. When value is invisible, departments tend to assert it through rules rather than design it as a service.
+
+## A joint model: three forces in tension
+
+A joint model has to show not only where each discipline works but how they pull on each other. Drawn as a triangle, each pair of disciplines has its own productive tension, held between strategy above and policy below.
+
+&#91;embedded content: joint model · three disciplines in tension, between strategy and policy\]
+
+Each edge is a tension to keep, not a problem to solve. If service design wins outright against architecture, every journey becomes bespoke and systems sprawl; if architecture wins, users are bent to fit the system. If service design wins against organisation design, everyone owns everything; if organisation design wins, users meet the org chart through hand-offs. Between architecture and organisation design, too much coherence creates a central bottleneck and too much autonomy creates duplicated, fragmented systems.
+
+Strategy decides which services and risks deserve the most tension, so the disciplines do not fight equally hard everywhere. Policy fixes what is not negotiable, so the tension stays within safe limits. The operating model is where the three meet: the one artefact all three should write together, and today it is usually owned by none of them. Within those bounds, the casting vote on any disagreement goes to the service test: does the result work for the user, end to end?
+
+## Front, middle and back
+
+The sharpest question the model raises is whether to organise around capabilities or around services. Capabilities are stable and enterprise-centric; services are user-centric and cut across many capabilities. The position taken here is a layered answer: services at the front, a security factory of capabilities in the middle, enabling functions at the back, and business operations running across all three.
+
+&#91;embedded content: front, middle and back · three layers with business operations across them\]
+
+The front faces the customer: it is where need is understood and value released, and it owns the outcome. The middle holds the capabilities, aligned to a framework such as the NIST Cybersecurity Framework, and owns their quality and capacity. The back provides the engineering and data the other layers run on. Business operations (people, planning, resourcing, architecture, portfolio and investment) keeps all three working efficiently and effectively. It is the natural owner of the operating model, which answers the question of who owns the whole.
+
+The model mirrors the service blueprint (frontstage, backstage, support), so each layer has a natural lead discipline. Its success depends on a few seams. The factory must not become a ticket queue behind a front desk with no power, so service owners need a say in how factory capacity is prioritised. Not all of the middle is factory work: threat intelligence and incident response need expert cells, not production lines. Governance, which NIST CSF 2.0 now treats as its own function, belongs with business operations beside policy and risk appetite. And business operations, because it holds the money, must be judged on how well it keeps the layers in balance, or it will quietly become the real centre.
+
+## Strategy and policy: direction and boundaries
+
+Strategy chooses where to go; policy sets the edges of the road. Both reach into every layer of the design, but in opposite ways, and security departments often let policy do strategy's job.
+
+Part of the confusion is the word itself. In Rumelt's *Good Strategy Bad Strategy*, a "guiding policy" is a chosen approach that sits inside a strategy. In a security department, policy means mandatory rules. A strategy that is really a list of compliance goals has skipped the hard part: choosing what matters most and what will not be done.
+
+The more damaging failure runs the other way, when rules stand in for design. A good policy statement should land as design in at least one place: a control built into a platform, an accountability or decision right, or a step the user can actually complete. A policy that lands only as an instruction to people ("users must not…") usually means nothing has been designed to solve the problem. The policy is compensating for a design gap, and the cost falls on the user.
+
+Stafford Beer's Viable System Model offers a better reading of policy: as the organisation's identity, holding the balance between running today's operations and adapting to tomorrow's. On that view, a security policy function is less a rulebook and more the keeper of risk appetite.
+
+## Keeping it in balance: metrics, culture and an honest diagnosis
+
+A design held in tension will drift. One discipline quietly wins an argument, then another, until the balance is gone. Three things keep it honest.
+
+**Metrics, paired across the tensions.** OKRs carry strategy, KPIs and key risk indicators carry policy and risk appetite, and operational metrics are the evidence underneath both. A metric owned by one discipline will be optimised by that discipline, often at another's expense; Goodhart's law warns that a measure that becomes a target stops measuring. The answer is to pair measures across each tension: customer success alongside platform reuse, hand-offs per journey alongside cost to serve. In security, rising exception requests and workarounds are often the earliest sign that policy has drifted away from the service. They look like non-compliance, but they are often evidence that the design has failed its users.
+
+**A culture that can take constant change.** If the structure keeps reconfiguring, culture becomes the most stable part of the design. Leadership matters more, not less, but its job shifts from making decisions to creating the conditions in which others can make them. Stephen Bungay's *The Art of Action*, drawing on the military idea of mission command, shows why tighter control fails and clear intent works. Distributed decisions need four things: clear intent (strategy), clear boundaries (policy), competence (roles and decision rights) and shared information (metrics people can see). David Marquet's *Turn the Ship Around!* adds the caution: control can only be pushed down as fast as competence and clarity go with it.
+
+**An honest diagnosis.** Rumelt puts diagnosis at the heart of good strategy: naming the critical challenge before choosing what to do. That depends on signals (metrics) and on people being willing to raise them (culture). Matthew Syed's *Black Box Thinking* shows the difference: aviation treats every failure as information to be shared, while systems that treat failure as fault drive it underground.
+
+This is hardest in a regulated environment, where risk and audit can be seen as looking for someone to blame. Three reframes help. No findings is weak evidence: a department that reports no problems is either perfect or not looking, and finding and fixing your own failures is stronger proof of control. A just culture, in Sidney Dekker's sense, learns from honest mistakes and system failures and deals only with recklessness. And assurance can be a partner, as the Institute of Internal Auditors' 2020 Three Lines Model intends, with risk and audit brought in early as critical friends rather than late as judges.
+
+
+## Further reading
+
+- **Organisation design:** Jay Galbraith, *Designing Organizations*; Gregory Kesler, Amy Kates and Toby DiMartino, *Networked, Scaled, and Agile*; Emilie Le-Brun and Jeremy Werner, *The Octopus Organization*
+- **Enterprise architecture:** the TOGAF standard; Jeanne Ross, Peter Weill and David Robertson, *Enterprise Architecture as Strategy*
+- **Service design and team design:** Lou Downe, *Good Services*; Matthew Skelton and Manuel Pais, *Team Topologies*
+- **Strategy, culture and learning:** Richard Rumelt, *Good Strategy Bad Strategy* and *The Crux*; Stephen Bungay, *The Art of Action*; David Marquet, *Turn the Ship Around!*; Matthew Syed, *Black Box Thinking*; Sidney Dekker, *Just Culture*; Stafford Beer, *Brain of the Firm*
+
+The working draft cites further authors from the original reading list, including Burlton, Cichocki, Jager and McMillan.
