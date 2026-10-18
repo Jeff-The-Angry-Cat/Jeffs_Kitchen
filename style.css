@@ -145,3 +145,65 @@ footer {
   h1 { font-size: 28px; }
   .site-name { font-size: 24px; }
 }
+
+/* ---------- Diagrams inside idea pages ---------- */
+.diagram {
+  margin: 32px 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.diagram svg { width: 100%; height: auto; display: block; }
+
+.diagram figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.d-tri    { fill: #fbe1c8; fill-opacity: 0.35; stroke: var(--accent); stroke-width: 2; }
+.d-node   { fill: var(--accent); }
+.d-label  { font: 600 15px system-ui, sans-serif; fill: var(--text); }
+.d-sub    { font: italic 13px Georgia, serif; fill: var(--muted); }
+.d-edge   { font: 12px system-ui, sans-serif; fill: var(--muted); }
+.d-centre { font: 600 16px Georgia, serif; fill: var(--accent); }
+.d-band   { font: 600 12px system-ui, sans-serif; letter-spacing: 0.08em; fill: var(--muted); }
+
+.layers {
+  display: flex;
+  gap: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+.layer-stack { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+.layer, .layer-ops {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.layer strong, .layer-ops strong { display: block; }
+.layer span, .layer-ops span { color: var(--muted); font-size: 13px; }
+
+.layer.front  { background: #e3efd9; }
+.layer.middle { background: #fbe1c8; }
+.layer.back   { background: #f1e7d8; }
+
+.layer-ops {
+  width: 30%;
+  border: 2px dashed var(--accent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .layers { flex-direction: column; }
+  .layer-ops { width: auto; }
+}
