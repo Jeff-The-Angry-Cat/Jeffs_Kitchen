@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensing and Responding · Half Baked</title>
+  <meta name="description" content="Security as one network: joining up the tools, and learning from the armed forces how many teams can act as one.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tables on this page */
+    .table-wrap { overflow-x: auto; margin: 24px 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.45; }
+    th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+    th { background: #f6eee2; font-weight: 600; }
+    td:first-child { font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a class="site-name" href="index.html">Half <span>Baked</span></a>
+      <nav>
+        <a href="index.html">Ideas</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <span class="status mixing">Just mixing</span>
+    <h1>Sensing and Responding: Security as One Network</h1>
+    <p class="meta">October 2026</p>
+
+<h2>Introduction</h2>
+<p>Most security departments are organised as a set of separate teams: one for identity, one for networks, one for monitoring, one for vulnerabilities, one for policy and compliance. Each has its own tools, its own data and its own manager. People often call these teams &ldquo;stovepipes&rdquo; or &ldquo;silos&rdquo;, because information travels up and down inside each one but rarely across.</p>
+<p>That structure is too slow for modern attacks. An attacker does not care which team owns which system. They move from a phishing email to a stolen password to a cloud server in hours. If each team only sees its own slice, nobody sees the whole attack until it is too late.</p>
+<p>This paper argues that the fix has two parts:</p>
+<ul>
+<li><strong>A shared technology fabric</strong> that joins the tools together, so that everyone sees the same picture. The industry name for this is a &ldquo;cybersecurity mesh&rdquo;.</li>
+<li><strong>A way of working</strong> that lets many teams act as one. For this, the best guide is not from the security industry at all. It comes from the armed forces, which have spent decades learning how to turn many separate sensors and units into one team that is always watching and always ready to act.</li>
+</ul>
+<p>Neither part works alone. Joining up the tools without changing how people work just recreates the silos in software. Changing how people work without a shared picture leaves them nothing to work from.</p>
+<p>The paper explains each idea in plain terms: the mesh and its continuous checking for weaknesses, a decision model called the OODA loop, a recent piece of UK military guidance, and a system Ukraine has built to share battlefield information. It then describes the way of working they point to, and where the military comparison stops being useful in a bank.</p>
+<p>It runs alongside two earlier papers, <a href="avoiding-accidental-design.html">Avoiding Accidental Design</a> and <a href="three-hats-one-appetite.html">Three Hats, One Appetite</a>. It shares their starting point: the business owns the risk, and security works within the level of risk the business is willing to accept.</p>
+
+<h2>The mesh: joining up the tools</h2>
+<p>Ten years ago, most of a bank&rsquo;s systems sat inside its own buildings and data centres, and security was largely about guarding the edge. Today systems sit in the cloud, on staff laptops at home, and with dozens of suppliers. There is no single edge left to guard.</p>
+<p>The research firm Gartner coined the term <strong>Cybersecurity Mesh Architecture (CSMA)</strong> in 2021 for its answer to this. It is not a product you can buy. It is a design approach: keep the many security tools a firm already has, but connect them so they share information and follow the same rules (<a href="https://www.checkpoint.com/cyber-hub/cyber-security/what-is-cybersecurity-mesh-architecture-csma">Check Point summary</a>). Gartner describes four shared layers that sit across all the tools:</p>
+<div class="table-wrap"><table><thead><tr><th>Gartner&rsquo;s layer</th><th>What it means in plain terms</th><th>The military equivalent</th></tr></thead><tbody><tr><td>Security analytics and intelligence</td><td>One place where warning signs from every tool are collected and compared</td><td>A network of sensors feeding one intelligence cell</td></tr><tr><td>Distributed identity</td><td>Every person, device and system has one identity that all tools recognise</td><td>A shared map grid, so everyone describes locations the same way</td></tr><tr><td>Consolidated policy and posture</td><td>One set of security rules, applied wherever the system lives</td><td>The commander&rsquo;s instructions, which every unit follows</td></tr><tr><td>Consolidated dashboards</td><td>One view of what is happening, for everyone who needs to decide</td><td>A shared battle map</td></tr></tbody></table></div>
+<p>The right-hand column is why the mesh feels so close to military thinking. Both are about turning many separate eyes into one picture.</p>
+<p>There is a catch. A well-known rule in technology, Conway&rsquo;s law, says that systems end up mirroring the structure of the organisation that builds them. If the identity team, the network team and the monitoring team each keep their own tools, budgets and managers, they will build three separate meshes that do not talk to each other. Each will guard its own data. The &ldquo;shared&rdquo; layers will be shared only on the architecture diagram. So the way the department is organised has to change along with the technology, or the technology will quietly drift back to match the old silos.</p>
+
+<h2>Addendum: CTEM, checking for weaknesses all the time</h2>
+<p>The mesh joins the tools up. <strong>Continuous Threat Exposure Management (CTEM)</strong> is the habit of constantly asking: &ldquo;If someone attacked us today, where could they get in, and would it matter?&rdquo; Gartner introduced the idea in 2022. Like the mesh, it is a way of working rather than a product. It has five stages (<a href="https://www.vectra.ai/topics/ctem">Vectra summary</a>):</p>
+<ol>
+<li><strong>Scoping</strong>: agree with the business which services, data and people matter most. Start there, not with a list of every system.</li>
+<li><strong>Discovery</strong>: look for weaknesses in that scope. These include software flaws, but also badly set-up systems, weak passwords and people with more access than they need.</li>
+<li><strong>Prioritisation</strong>: rank what was found by how much harm it could do to the business and how easily an attacker could reach it, not by a generic severity score.</li>
+<li><strong>Validation</strong>: test whether an attacker could really use the weakness, for example by hiring people to try (&ldquo;red teaming&rdquo;).</li>
+<li><strong>Mobilisation</strong>: get the right people, often outside security, to fix it by an agreed date. Then feed what was learned back into step 1.</li>
+</ol>
+<p>Gartner predicted that organisations working this way would be three times less likely to suffer a breach by 2026. That is a forecast, not a proven result: no published study has yet measured it.</p>
+<p>CTEM deserves its own mention for three reasons.</p>
+<ul>
+<li><strong>It starts and ends with the business.</strong> The business decides what matters, and fixes are ranked by business harm. This is the same starting point as the risk appetite paper.</li>
+<li><strong>It makes the mesh look ahead, not just react.</strong> Spotting and stopping an attack in progress is a fast, short loop. CTEM is a slower loop that runs all the time, before any attack. Both feed the same shared picture. Without CTEM, the mesh only ever responds to things that have already happened.</li>
+<li><strong>Its hardest step is about people, not technology.</strong> Most CTEM programmes stall at mobilisation, because the people who must make the fix sit in technology teams, operations or the business, not in security. That only works if the department and its colleagues behave as one team, rather than security sending tickets over a wall.</li>
+</ul>
+<p>So CTEM is best seen as part of the mesh rather than separate from it. The mesh supplies the eyes and the rules. CTEM supplies the discipline of deciding what to look for, what matters most, and who acts.</p>
+
+<h2>The OODA loop: shared understanding beats raw speed</h2>
+<p><strong>What it is.</strong> The OODA loop was developed by John Boyd, a US Air Force fighter pilot and strategist, in the 1970s and 1980s. It describes how any person or organisation makes decisions under pressure, in four steps:</p>
+<ol>
+<li><strong>Observe</strong>: notice what is happening.</li>
+<li><strong>Orient</strong>: make sense of it, using experience, knowledge and culture.</li>
+<li><strong>Decide</strong>: choose what to do.</li>
+<li><strong>Act</strong>: do it, then observe the result and go round again.</li>
+</ol>
+<p>An everyday example is a driver who sees brake lights ahead (observe), recognises a traffic jam forming (orient), chooses to change lanes (decide) and steers (act).</p>
+<p><strong>What people often miss.</strong> OODA is usually summed up as &ldquo;go round the loop faster than your opponent&rdquo;. Boyd&rsquo;s own later work (<em>The Essence of Winning and Losing</em>, 1995) says something more useful. The most important step is <strong>orient</strong>, the sense-making. When a group of people share the same understanding of the situation and the same idea of what matters, they can act without stopping to ask permission, because they already know what their leader would want. Boyd called this &ldquo;implicit guidance and control&rdquo;. Speed follows from shared understanding; it is not a goal on its own. Frans Osinga&rsquo;s study of Boyd, <em>Science, Strategy and War</em> (2007), makes the same case.</p>
+<p><strong>Why it matters here.</strong> This is the heart of the silo problem. A siloed security department does not lack tools or data. It lacks a shared understanding. So every warning sign has to travel up one team&rsquo;s chain of command and down another&rsquo;s before anyone acts. The department moves at the speed of its organisation chart.</p>
+<p>Shared understanding comes from three things, and each is something a leader can design:</p>
+<ul>
+<li><strong>A common picture</strong>: everyone sees the same information, described in the same way. This is what the mesh provides.</li>
+<li><strong>Shared intent</strong>: everyone knows what matters and how much risk is acceptable. In a bank, this comes from the business&rsquo;s risk appetite.</li>
+<li><strong>Trust to act</strong>: people are allowed to act within that intent without asking first. The armed forces call this &ldquo;mission command&rdquo;: leaders say what needs to be achieved and why, and leave the how to the people on the ground. Stanley McChrystal&rsquo;s book <em>Team of Teams</em> (2015) describes how the same idea transformed US special forces in Iraq, summed up as &ldquo;shared consciousness and empowered execution&rdquo;.</li>
+</ul>
+<p>The first is technology. The second is governance. The third is how the organisation is designed.</p>
+
+<h2>What the military calls ISR, and what it teaches us</h2>
+<p><strong>What it is.</strong> Armed forces need to know what is happening around them: where the other side is, what it is doing, and what it might do next. Gathering and making sense of that information is called <strong>ISR</strong>, short for intelligence, surveillance and reconnaissance:</p>
+<ul>
+<li><strong>Surveillance</strong> is watching an area continuously, like a CCTV camera.</li>
+<li><strong>Reconnaissance</strong> is going to look at something specific for a purpose, like sending a drone to check a particular road.</li>
+<li><strong>Intelligence</strong> is the end product: what all that watching means, and what to do about it.</li>
+</ul>
+<p>You will also hear <strong>ISTAR</strong>, which adds &ldquo;target acquisition&rdquo;: pinning down exactly where something is so that action can be taken against it. Security has a direct equivalent: finding exactly which account or server an attacker is using so it can be shut off.</p>
+<p>In 2023 the UK Ministry of Defence published a short guide on how British forces should do this: <a href="https://assets.publishing.service.gov.uk/media/641c27e15155a200136ad4df/JDN_1_23_ISR_web.pdf">Joint Doctrine Note 1/23, Intelligence, Surveillance and Reconnaissance</a>. (&ldquo;Joint&rdquo; means across the Army, Navy and Air Force; &ldquo;doctrine&rdquo; means the agreed way of doing things.) Read with a security department in mind, it is almost a manual for working as one team. Five of its ideas carry straight across.</p>
+<p><strong>1. Information gathering serves operations, not just analysts.</strong> The guide describes ISR as &ldquo;an integrated intelligence and operations set of capabilities&rdquo; (p. 3). The people who gather information and the people who act on it are one system. In security terms, threat intelligence, monitoring, vulnerability management and incident response are one capability, not four separate teams.</p>
+<p><strong>2. One effort, not divided up.</strong> The guide says ISR should not be &ldquo;artificially divided&rdquo; between land, sea, air or levels of command, and that equipment should be used wherever it is needed, regardless of who owns it (paras 1.14 to 1.15). Swap &ldquo;land, sea and air&rdquo; for &ldquo;cloud, laptops and identity&rdquo;, and this is the case against silos in one sentence.</p>
+<p><strong>3. The commander decides what to look for.</strong> Information gathering starts with requests from the people in charge, which are checked, ranked and matched to the right sensors (paras 2.1 to 2.4). In a bank, the &ldquo;commander&rdquo; is the business leader who owns the risk. Their priorities, set by the business&rsquo;s risk appetite, decide what security watches most closely. This is the same idea as CTEM&rsquo;s scoping step.</p>
+<p><strong>4. The data does not belong to whoever collected it.</strong> The guide says making sense of information is &ldquo;not subordinate to collection&rdquo; (para 4.1), and prefers models where many teams share and analyse it together (para 4.13). In security terms, warning signs from the firewall team, the identity team and the cloud team should be pooled and analysed together, not kept and judged inside each team.</p>
+<p><strong>5. Say what you need, not how to do it.</strong> Orders state what is to be achieved, not how, and rely on &ldquo;an empowered collection operations manager&rdquo; to adapt on the spot (paras 2.20, 2.25). This is mission command again, and it is what lets the loop run without waiting for permission.</p>
+<p>The guide breaks ISR into five steps (task, collect, process, exploit, disseminate), which map onto security like this:</p>
+<div class="table-wrap"><table><thead><tr><th>Military step</th><th>What it means in security</th><th>Who owns it in a one-team model</th></tr></thead><tbody><tr><td>Task</td><td>Decide what to watch for, based on business risk and known threats</td><td>The business sets priorities; security turns them into a watch list</td></tr><tr><td>Collect</td><td>Gather logs, scan for weaknesses, take reports from staff and suppliers</td><td>Every team and tool, including the business</td></tr><tr><td>Process and exploit</td><td>Pull the signals together and work out what they mean</td><td>One shared analysis function, fed by all</td></tr><tr><td>Disseminate</td><td>Get the picture and the actions to whoever must act</td><td>Whoever owns the fix, inside or outside security</td></tr></tbody></table></div>
+<p>The guide is also frank that the main challenge is the sheer amount and variety of data, and asks that all collected data be treated as potentially valuable when it is gathered (paras 1.17d, 1.19). That is a strong argument for one shared pool of security data rather than each tool keeping its own.</p>
+
+<h2>Ukraine&rsquo;s Delta: one live map that everyone adds to</h2>
+<p><strong>What it is.</strong> <a href="https://en.wikipedia.org/wiki/Delta_(situational_awareness_system)">Delta</a> is a computer system used by Ukraine&rsquo;s armed forces since Russia&rsquo;s full-scale invasion in 2022. Think of it as a shared live map of the battlefield, a little like a navigation app that shows traffic reported by other drivers. Units, drones, satellites, radar, allied countries and even vetted members of the public add what they see: a tank in a field, a supply truck on a road. Everyone with access can see the result, plan missions on it and coordinate with neighbouring units.</p>
+<p><strong>What it replaced.</strong> Before systems like Delta, information moved by radio, phone and paper map. A drone operator who spotted a target reported it up their own chain of command, someone passed it across to another unit, and that unit decided whether to act. Ukrainian officials say this could take up to 72 hours, by which time the target had often moved. With Delta, they say, the time from spotting a target to acting on it is now about two minutes, and about 90% of combat units use the system (<a href="https://www.aol.com/articles/ukraines-digital-war-tool-cut-151256172.html">Business Insider via AOL</a>). These are the officials&rsquo; own figures and have not been independently checked, but the scale of change they describe is the point.</p>
+<p><strong>What made it work.</strong> The technology matters less than how it came about.</p>
+<ul>
+<li><strong>It was designed to share, not hoard.</strong> Delta began in 2017 as part of a NATO exercise on getting units to share information instead of each keeping its own.</li>
+<li><strong>It was built by insiders and outsiders together.</strong> The Ministry of Defence built it with Aerorozvidka, a volunteer group of drone enthusiasts, and kept improving it based on soldiers&rsquo; feedback.</li>
+<li><strong>Everyone gives and everyone gets.</strong> A unit that reports a sighting can also see everyone else&rsquo;s. Contributing is how you benefit.</li>
+<li><strong>Computers take the first look.</strong> An add-on called Avengers scans drone and camera video and flags enemy vehicles automatically, reportedly about 12,000 a week, so people spend their time judging what to do rather than staring at screens.</li>
+<li><strong>It is protected as a prime target.</strong> Because it holds so much valuable information, it has been attacked itself, including a phishing campaign in December 2022. In early 2026 it passed an independent security assessment against more than 160 requirements.</li>
+</ul>
+<p><strong>What a bank can learn.</strong> A shared security picture should be fed not only by the security operations team, but by the business, technology teams, suppliers and ordinary staff, and each contributor should get something useful back. Automation should do the first sift so that people can concentrate on judgement. And the picture, which by its nature shows every weakness the firm has, needs the strongest protection of all.</p>
+
+<h2>The operating model: two loops, one picture</h2>
+<p>Put together, these ideas describe one way of working. The business says what matters. Everyone works from one shared picture, so they understand the situation the same way. Two loops run off that picture: a slow loop (CTEM) that checks for weaknesses all the time, and a fast loop (OODA) that spots and stops attacks as they happen. Both loops draw information from, and hand actions to, one team that reaches well beyond the security department.</p>
+<figure class="diagram">
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 400' role='img' aria-label='Two loops share one picture and one intent: business intent at the top, the exposure loop (CTEM) and response loop (OODA) either side of a common security picture, and one team at the bottom' font-family='system-ui, -apple-system, Segoe UI, sans-serif' font-size='13'>
+<defs><marker id='sa' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M0 0L10 5L0 10z' fill='#7a6f66'/></marker></defs>
+<text x='24' y='34' font-size='15' font-weight='600' text-anchor='start' fill='#2f2a26'>Two loops share one picture and one intent</text>
+<rect x='24' y='56' width='712' height='56' rx='8' fill='#f6eee2' stroke='#7a6f66' stroke-width='1.25'/>
+<text x='380' y='80' font-size='13' font-weight='600' text-anchor='middle' fill='#2f2a26'>Business intent, set by the risk owner</text>
+<text x='380' y='98' font-size='11.5' text-anchor='middle' fill='#7a6f66'>Risk appetite, impact tolerances, critical services</text>
+<g fill='none' stroke='#7a6f66' stroke-width='1.25'><path d='M127 112V160' marker-end='url(#sa)'/><path d='M380 112V160' marker-end='url(#sa)'/><path d='M633 112V160' marker-end='url(#sa)'/><path d='M350 320V264' marker-end='url(#sa)'/><path d='M410 264V320' marker-end='url(#sa)'/><path d='M127 264V320' marker-end='url(#sa)'/><path d='M633 264V320' marker-end='url(#sa)'/><path d='M230 212H270' marker-start='url(#sa)' marker-end='url(#sa)'/><path d='M490 212H530' marker-start='url(#sa)' marker-end='url(#sa)'/></g>
+<text x='390' y='140' font-size='11.5' text-anchor='start' fill='#7a6f66'>sets the requirement (Task)</text>
+<rect x='24' y='160' width='206' height='104' rx='8' fill='#fff' fill-opacity='1' stroke='#7a6f66' stroke-width='1.25'/><text x='127' y='184' font-size='13' font-weight='600' text-anchor='middle' fill='#2f2a26'>Exposure loop (CTEM)</text><text x='127' y='204' font-size='11.5' text-anchor='middle' fill='#2f2a26'>Scope, discover, prioritise,</text><text x='127' y='220' font-size='11.5' text-anchor='middle' fill='#2f2a26'>validate, mobilise</text><text x='127' y='244' font-size='11.5' text-anchor='middle' fill='#7a6f66'>Before an attack, always on</text>
+<rect x='270' y='160' width='220' height='104' rx='8' fill='#b5652b' fill-opacity='0.12' stroke='#b5652b' stroke-width='2'/><text x='380' y='184' font-size='13' font-weight='600' text-anchor='middle' fill='#2f2a26'>Common security picture</text><text x='380' y='204' font-size='11.5' text-anchor='middle' fill='#2f2a26'>Analytics, identity, policy,</text><text x='380' y='220' font-size='11.5' text-anchor='middle' fill='#2f2a26'>dashboards (CSMA layers)</text><text x='380' y='244' font-size='11.5' text-anchor='middle' fill='#7a6f66'>One orientation for all</text>
+<rect x='530' y='160' width='206' height='104' rx='8' fill='#fff' fill-opacity='1' stroke='#7a6f66' stroke-width='1.25'/><text x='633' y='184' font-size='13' font-weight='600' text-anchor='middle' fill='#2f2a26'>Response loop (OODA)</text><text x='633' y='204' font-size='11.5' text-anchor='middle' fill='#2f2a26'>Observe, orient, decide, act</text><text x='633' y='220' font-size='11.5' text-anchor='middle' fill='#2f2a26'>detect, contain, recover</text><text x='633' y='244' font-size='11.5' text-anchor='middle' fill='#7a6f66'>During an attack, in minutes</text>
+<text x='119' y='296' font-size='11.5' text-anchor='end' fill='#7a6f66'>mobilise fixes</text><text x='342' y='296' font-size='11.5' text-anchor='end' fill='#7a6f66'>signals in</text><text x='418' y='296' font-size='11.5' text-anchor='start' fill='#7a6f66'>actions out</text><text x='625' y='296' font-size='11.5' text-anchor='end' fill='#7a6f66'>contain, recover</text>
+<rect x='24' y='320' width='712' height='56' rx='8' fill='#fff' stroke='#7a6f66' stroke-width='1.25'/>
+<text x='380' y='344' font-size='13' font-weight='600' text-anchor='middle' fill='#2f2a26'>One team: security, technology, business, suppliers, staff</text>
+<text x='380' y='362' font-size='11.5' text-anchor='middle' fill='#7a6f66'>Every contributor is both a sensor and an actor</text>
+</svg>
+<figcaption>The sensing and responding operating model: two loops, one picture.</figcaption>
+</figure>
+<p>Reading the diagram from top to bottom: the top band is the &ldquo;commander&rsquo;s&rdquo; priorities from the military guide, and CTEM&rsquo;s scoping step. The centre is the joined-up mesh, and Delta shows it should be fed by everyone. The bottom band is where the silos are removed.</p>
+<p>Four practical choices follow.</p>
+<ol>
+<li><strong>Organise around the shared picture, not the tools.</strong> Each team keeps its specialist skills, but no team owns its data. One shared analysis function pulls everything together.</li>
+<li><strong>Turn risk appetite into clear rules for action.</strong> Write down what people may do without asking (lock a stolen account, isolate an infected laptop) and what must go to the business owner first (take a payment service offline). This is mission command in a bank.</li>
+<li><strong>Make fixing things a shared duty.</strong> Whoever runs a system owns its fix. Security provides the picture, the priority and the deadline.</li>
+<li><strong>Reward people for contributing to the picture.</strong> Teams and business units that feed it should get faster, better answers back, just as Delta&rsquo;s units do.</li>
+</ol>
+<p>The three roles from <a href="three-hats-one-appetite.html">the earlier paper</a> fit onto the diagram. As <strong>CISO</strong>, the head of security writes the security part of the business&rsquo;s priorities and checks that both loops stay within them. As <strong>service provider</strong>, they run the picture and both loops as services to the business. As <strong>head of department</strong>, they invest in the technology and shape the one team. The diagram also makes the tension plain: the same person both runs the loops and checks them.</p>
+
+<h2>Where the military comparison stops</h2>
+<p>The comparison is useful, but a bank is not an army. Four differences matter.</p>
+<ul>
+<li><strong>The person in charge sits outside security.</strong> In the armed forces, the people gathering information and the commander are in the same chain of command. In a bank, priorities come from the business and the firm-wide risk framework, not from the security department. Security can run the loops but cannot set their purpose.</li>
+<li><strong>The aim is to stay within limits, not to win.</strong> A military response aims to defeat the enemy. A security response aims to keep the business within the risk it has agreed to accept and the disruption it can tolerate, under rules such as the UK&rsquo;s operational resilience regime and the EU&rsquo;s Digital Operational Resilience Act (DORA). Sometimes the right answer is to accept a risk, not to act on it.</li>
+<li><strong>Faster is not always better.</strong> Delta&rsquo;s two-minute loop works because striking the target is the expected outcome. Shutting down a payment system in two minutes could do more damage than the attacker. The firm needs to agree in advance which actions people may take on their own and which need the business owner&rsquo;s say.</li>
+<li><strong>Someone still has to check independently.</strong> Armed forces do not have a separate function checking that controls work. Banks do. A security department that both runs controls and checks them must keep enough distance to do the checking honestly. This is the three-roles tension from the earlier paper.</li>
+</ul>
+
+<div class="feedback">
+<h2>Have a taste: open questions</h2>
+<ul>
+<li>Which response actions can the department take on its own authority, and which must go back to the business risk owner? This is the boundary of mission command.</li>
+<li>Who owns the common picture: security, technology, or the enterprise risk function?</li>
+<li>How should the department be organised to run one loop: by capability (identity, network, cloud) as today, or by mission (protect payments, protect customer data) as JDN 1/23&rsquo;s problem-centric model suggests?</li>
+<li>How should success be measured: by speed of the loop, or by time spent within appetite?</li>
+</ul>
+<p>Thoughts on any of these are very welcome. Drop me a line at <a href="mailto:you@example.com">you@example.com</a>.</p>
+</div>
+
+<h2>Plain-English glossary</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>CSMA (cybersecurity mesh)</td><td>Gartner&rsquo;s design approach of joining separate security tools so they share data and follow one set of rules</td></tr><tr><td>CTEM</td><td>Continuous Threat Exposure Management: constantly finding, ranking, testing and fixing weaknesses, starting from what matters to the business</td></tr><tr><td>Delta</td><td>Ukraine&rsquo;s shared live battlefield map, fed by units, drones, satellites and allies</td></tr><tr><td>Doctrine</td><td>The armed forces&rsquo; agreed way of doing something</td></tr><tr><td>ISR</td><td>Intelligence, surveillance and reconnaissance: gathering information and working out what it means</td></tr><tr><td>ISTAR</td><td>ISR plus target acquisition: pinpointing something precisely enough to act on it</td></tr><tr><td>Mission command</td><td>Leaders say what to achieve and why; the people on the ground decide how</td></tr><tr><td>OODA loop</td><td>Observe, orient, decide, act: John Boyd&rsquo;s model of decision-making under pressure</td></tr><tr><td>Silo or stovepipe</td><td>A team whose information flows up and down its own chain but rarely across to others</td></tr></tbody></table></div>
+
+<h2>Sources</h2>
+<p>Opened for this paper:</p>
+<ul>
+<li>UK MOD, <a href="https://assets.publishing.service.gov.uk/media/641c27e15155a200136ad4df/JDN_1_23_ISR_web.pdf">JDN 1/23 Intelligence, Surveillance and Reconnaissance</a> (January 2023)</li>
+<li><a href="https://www.checkpoint.com/cyber-hub/cyber-security/what-is-cybersecurity-mesh-architecture-csma">Cybersecurity Mesh Architecture (CSMA)</a>, Check Point summary of Gartner&rsquo;s model</li>
+<li><a href="https://www.vectra.ai/topics/ctem">CTEM explained</a>, Vectra summary of Gartner&rsquo;s five stages</li>
+<li><a href="https://en.wikipedia.org/wiki/Delta_(situational_awareness_system)">Delta (situational awareness system)</a>, Wikipedia</li>
+<li><a href="https://www.aol.com/articles/ukraines-digital-war-tool-cut-151256172.html">Ukraine&rsquo;s digital war tool cut the time between finding and striking targets from days to minutes</a>, Business Insider via AOL</li>
+<li><a href="https://cps-vo.org/sites/cps-vo.org/files/cpsvo_file_nodes/OODA_Loops_in_Cyberspace_A_New_Cyber-Defense_Model.pdf">OODA Loops in Cyberspace: A New Cyber-Defense Model</a></li>
+</ul>
+<p>Cited from general knowledge, worth reading in full: John Boyd, <em>The Essence of Winning and Losing</em> (1995); Frans Osinga, <em>Science, Strategy and War</em> (2007); Stanley McChrystal, <em>Team of Teams</em> (2015).</p>
+
+    <p><a href="index.html">&larr; Back to all ideas</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Half Baked &middot; ideas welcome, crumbs included.
+    </div>
+  </footer>
+
+</body>
+</html>
