@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 320" width="860" height="320" role="img" aria-label="Galbraith's information processing view. Rising uncertainty means more information must reach decision-makers. Reduce the information that must flow up through slack resources, here room inside appetite and impact tolerances, and self-contained tasks, here mission teams acting within their arcs. Increase capacity through vertical information systems, here critical questions keeping the upward flow narrow, and lateral relations, here the common picture linking teams sideways.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="860" height="320" fill="#FFFFFF"/>
+
+  <rect class="bw" x="270" y="16" width="320" height="56" rx="5"/>
+  <text class="b m tw" x="430" y="39">Rising uncertainty</text>
+  <text class="s m" x="430" y="58">more information must reach decision-makers</text>
+  <line class="lm" x1="380" y1="72" x2="210" y2="110"/>
+  <line class="lm" x1="480" y1="72" x2="650" y2="110"/>
+  <rect class="bx" x="30" y="110" width="350" height="46" rx="5"/>
+  <text class="b m" x="205" y="138">Reduce the information that must flow up</text>
+  <rect class="bx" x="480" y="110" width="350" height="46" rx="5"/>
+  <text class="b m" x="655" y="138">Increase the capacity to handle it</text>
+  <line class="lm" x1="160" y1="156" x2="115" y2="196"/>
+  <line class="lm" x1="250" y1="156" x2="295" y2="196"/>
+  <line class="lm" x1="610" y1="156" x2="565" y2="196"/>
+  <line class="lm" x1="700" y1="156" x2="745" y2="196"/>
+  <rect class="bg" x="30" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="42" y="220">Slack resources</text>
+  <text class="s ta" x="42" y="256">room inside appetite</text>
+  <text class="s ta" x="42" y="272">and impact tolerances</text>
+  <rect class="bg" x="210" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="222" y="220">Self-contained</text>
+  <text class="b" x="222" y="236">tasks</text>
+  <text class="s ta" x="222" y="256">mission teams act</text>
+  <text class="s ta" x="222" y="272">within their arcs</text>
+  <rect class="bg" x="480" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="492" y="220">Vertical information</text>
+  <text class="b" x="492" y="236">systems</text>
+  <text class="s ta" x="492" y="256">critical questions keep</text>
+  <text class="s ta" x="492" y="272">the flow up narrow</text>
+  <rect class="bg" x="660" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="672" y="220">Lateral relations</text>
+  <text class="s ta" x="672" y="256">the common picture</text>
+  <text class="s ta" x="672" y="272">links teams sideways</text>
+
+</svg>

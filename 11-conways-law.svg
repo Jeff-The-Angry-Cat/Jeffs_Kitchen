@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 290" width="820" height="290" role="img" aria-label="Left: three separate teams each build their own tools and data, with no shared data between them. Right: one team with shared intent builds one joined system with a shared data and identity layer.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="820" height="290" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="m11" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+  </defs>
+  <text class="h" x="20" y="24">Separate teams build separate systems</text>
+  <rect class="bx" x="20" y="44" width="110" height="36" rx="4"/><text class="b m" x="75" y="67">Identity</text>
+  <rect class="bx" x="145" y="44" width="110" height="36" rx="4"/><text class="b m" x="200" y="67">Network</text>
+  <rect class="bx" x="270" y="44" width="110" height="36" rx="4"/><text class="b m" x="325" y="67">Monitoring</text>
+  <line class="ln" x1="75" y1="80" x2="75" y2="138" marker-end="url(#m11)"/>
+  <line class="ln" x1="200" y1="80" x2="200" y2="138" marker-end="url(#m11)"/>
+  <line class="ln" x1="325" y1="80" x2="325" y2="138" marker-end="url(#m11)"/>
+  <rect class="bg" x="20" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="32" y="152" width="86" height="28" rx="3"/><text class="s m" x="75" y="170">own tools</text>
+  <rect class="bx" x="32" y="190" width="86" height="28" rx="3"/><text class="s m" x="75" y="208">own data</text>
+  <rect class="bg" x="145" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="157" y="152" width="86" height="28" rx="3"/><text class="s m" x="200" y="170">own tools</text>
+  <rect class="bx" x="157" y="190" width="86" height="28" rx="3"/><text class="s m" x="200" y="208">own data</text>
+  <rect class="bg" x="270" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="282" y="152" width="86" height="28" rx="3"/><text class="s m" x="325" y="170">own tools</text>
+  <rect class="bx" x="282" y="190" width="86" height="28" rx="3"/><text class="s m" x="325" y="208">own data</text>
+  <line class="lw dash" x1="130" y1="185" x2="145" y2="185"/>
+  <line class="lw dash" x1="255" y1="185" x2="270" y2="185"/>
+  <text class="s tw" x="20" y="260">Three teams, three meshes, no shared meaning.</text>
+
+  <line class="lm" x1="410" y1="16" x2="410" y2="276"/>
+
+  <text class="h" x="440" y="24">One team builds one system</text>
+  <rect class="ba" x="440" y="44" width="360" height="36" rx="4"/><text class="b m ta" x="620" y="67">One team with shared intent</text>
+  <line class="ln" x1="620" y1="80" x2="620" y2="138" marker-end="url(#m11)"/>
+  <rect class="bx" x="440" y="140" width="100" height="44" rx="4"/><text class="s m" x="490" y="166">identity tools</text>
+  <rect class="bx" x="570" y="140" width="100" height="44" rx="4"/><text class="s m" x="620" y="166">network tools</text>
+  <rect class="bx" x="700" y="140" width="100" height="44" rx="4"/><text class="s m" x="750" y="166">monitoring</text>
+  <line class="la" x1="540" y1="162" x2="570" y2="162"/>
+  <line class="la" x1="670" y1="162" x2="700" y2="162"/>
+  <line class="la" x1="490" y1="184" x2="490" y2="200"/>
+  <line class="la" x1="620" y1="184" x2="620" y2="200"/>
+  <line class="la" x1="750" y1="184" x2="750" y2="200"/>
+  <rect class="ba" x="440" y="200" width="360" height="30" rx="4"/><text class="s m ta b" x="620" y="220">shared data, identity and definitions</text>
+  <text class="s ta" x="440" y="260">One team, one mesh, one meaning.</text>
+
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420" role="img" aria-label="Galbraith's Star with today's strains. Strategy: compliance goals presented as strategy. Structure: teams grouped by tool, each owning its data. Processes: tickets over walls, everything escalates. Rewards: activity counted, honest alarms blamed. People: judgement unused, change fatigue. Centre: information split between teams.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="760" height="420" fill="#FFFFFF"/>
+
+  <polygon class="lm" points="380,80 517.9,180.2 465.2,342.3 294.8,342.3 242.1,180.2"/>
+  <line class="lm dash" x1="380" y1="225" x2="380" y2="80"/>
+  <line class="lm dash" x1="380" y1="225" x2="517.9" y2="180.2"/>
+  <line class="lm dash" x1="380" y1="225" x2="465.2" y2="342.3"/>
+  <line class="lm dash" x1="380" y1="225" x2="294.8" y2="342.3"/>
+  <line class="lm dash" x1="380" y1="225" x2="242.1" y2="180.2"/>
+  <circle class="bw" cx="380" cy="225" r="40"/>
+  <text class="s b m tw" x="380" y="221">Information</text>
+  <text class="s m tw" x="380" y="236">split by team</text>
+  <circle class="bx" cx="380" cy="80" r="36"/><text class="b m" x="380" y="85">Strategy</text>
+  <circle class="bx" cx="517.9" cy="180.2" r="36"/><text class="b m" x="517.9" y="185">Structure</text>
+  <circle class="bx" cx="465.2" cy="342.3" r="36"/><text class="b m" x="465.2" y="347">Processes</text>
+  <circle class="bx" cx="294.8" cy="342.3" r="36"/><text class="b m" x="294.8" y="347">Rewards</text>
+  <circle class="bx" cx="242.1" cy="180.2" r="36"/><text class="b m" x="242.1" y="185">People</text>
+  <text class="tw" x="428" y="62">Compliance goals</text>
+  <text class="tw" x="428" y="78">presented as strategy</text>
+  <text class="tw" x="566" y="176">Teams grouped by tool,</text>
+  <text class="tw" x="566" y="192">each owning its data</text>
+  <text class="tw" x="512" y="342">Tickets over walls;</text>
+  <text class="tw" x="512" y="358">everything escalates</text>
+  <text class="tw e" x="248" y="342">Activity counted;</text>
+  <text class="tw e" x="248" y="358">honest alarms blamed</text>
+  <text class="tw e" x="194" y="176">Judgement unused;</text>
+  <text class="tw e" x="194" y="192">change fatigue</text>
+  <text class="s m" x="380" y="405">Every point is out of line, and each one's fix is undone by the others.</text>
+
+</svg>

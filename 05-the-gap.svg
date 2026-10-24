@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-label="Illustrative chart. The pace of attack and business change rises steeply over time. The speed at which a siloed organisation decides rises slowly. The gap between them is unchosen exposure. A one-team model follows the faster line much more closely.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="760" height="300" fill="#FFFFFF"/>
+
+  <text class="cap" x="60" y="22">Illustrative, not measured</text>
+  <line class="lm" x1="60" y1="40" x2="60" y2="260"/>
+  <line class="lm" x1="60" y1="260" x2="730" y2="260"/>
+  <text class="s" x="725" y="280" text-anchor="end">time</text>
+  <text class="s" x="50" y="48" text-anchor="end">faster</text>
+  <path class="fw" d="M60,236 C300,228 480,180 720,48 L720,206 L60,238 Z"/>
+  <path class="lw" d="M60,236 C300,228 480,180 720,48"/>
+  <path class="ln" d="M60,238 L720,206"/>
+  <path class="la dash" d="M60,237 C300,226 500,176 720,82"/>
+  <line class="lw" x1="80" y1="62" x2="112" y2="62"/><text x="122" y="66">Pace of attack and business change</text>
+  <line class="la dash" x1="80" y1="86" x2="112" y2="86"/><text x="122" y="90">How fast a one-team model can decide</text>
+  <line class="ln" x1="80" y1="110" x2="112" y2="110"/><text x="122" y="114">How fast a department of separate teams can decide</text>
+  <text class="tw m" x="610" y="168">The gap:</text>
+  <text class="tw m" x="610" y="184">risk nobody chose</text>
+
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" width="820" height="480" role="img" aria-label="The whole operating model on Galbraith's Star. Above: business intent and risk appetite. Strategy: nested intent from the business, with appetite as the limit. Structure: front, middle and back, mission teams, and visible hats. Processes: two loops, one picture, triage and escalation. Rewards: credit for feeding the picture and for sound local calls. People: judgement within the arc, rehearsed in exercises. Centre: the data spine of questions, definitions and rules. Below: policy and the risk framework.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="820" height="480" fill="#FFFFFF"/>
+
+  <defs><marker id="m24" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="ba" x="160" y="12" width="500" height="40" rx="5"/>
+  <text class="b m ta" x="410" y="37">Business intent and risk appetite</text>
+  <line class="ln" x1="410" y1="52" x2="410" y2="67" marker-end="url(#m24)"/>
+  <polygon class="ln" points="410,105 543.1,201.7 492.3,358.3 327.7,358.3 276.9,201.7"/>
+  <line class="la" x1="410" y1="245" x2="410" y2="105"/>
+  <line class="la" x1="410" y1="245" x2="543.1" y2="201.7"/>
+  <line class="la" x1="410" y1="245" x2="492.3" y2="358.3"/>
+  <line class="la" x1="410" y1="245" x2="327.7" y2="358.3"/>
+  <line class="la" x1="410" y1="245" x2="276.9" y2="201.7"/>
+  <circle class="ba" cx="410" cy="245" r="60"/>
+  <text class="b m ta" x="410" y="237">Data spine</text>
+  <text class="s m" x="410" y="255">questions,</text>
+  <text class="s m" x="410" y="270">definitions, rules</text>
+  <circle class="bx" cx="410" cy="105" r="36"/><text class="b m" x="410" y="110">Strategy</text>
+  <circle class="bx" cx="543.1" cy="201.7" r="36"/><text class="b m" x="543.1" y="206">Structure</text>
+  <circle class="bx" cx="492.3" cy="358.3" r="36"/><text class="b m" x="492.3" y="363">Processes</text>
+  <circle class="bx" cx="327.7" cy="358.3" r="36"/><text class="b m" x="327.7" y="363">Rewards</text>
+  <circle class="bx" cx="276.9" cy="201.7" r="36"/><text class="b m" x="276.9" y="206">People</text>
+  <text class="b" x="458" y="92">Nested intent from the business</text>
+  <text class="s" x="458" y="108">appetite as the limit; what will not be done</text>
+  <text class="b" x="592" y="198">Front, middle and back</text>
+  <text class="s" x="592" y="214">mission teams; hats made visible</text>
+  <text class="b" x="540" y="356">Two loops, one picture</text>
+  <text class="s" x="540" y="372">triage, escalation, regular review</text>
+  <text class="b e" x="280" y="356">Credit for feeding the picture</text>
+  <text class="s e" x="280" y="372">and for sound local calls; no blame</text>
+  <text class="s e" x="280" y="386">for honest alarms</text>
+  <text class="b e" x="228" y="198">Judgement within the arc</text>
+  <text class="s e" x="228" y="214">built through exercises and rehearsal</text>
+  <line class="ln" x1="327.7" y1="428" x2="327.7" y2="398" marker-end="url(#m24)"/>
+  <line class="ln" x1="492.3" y1="428" x2="492.3" y2="398" marker-end="url(#m24)"/>
+  <rect class="bx" x="160" y="428" width="500" height="40" rx="5"/>
+  <text class="b m" x="410" y="453">Policy and the risk framework: the limits</text>
+
+</svg>

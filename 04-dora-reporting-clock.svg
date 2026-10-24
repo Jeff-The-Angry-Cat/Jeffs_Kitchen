@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 190" width="760" height="190" role="img" aria-label="DORA reporting clock: after an incident is detected and classified as major, the initial notification is due within four hours of classification and no later than 24 hours after detection; the intermediate report within 72 hours of the initial one; the final report within one month of the latest intermediate report.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="760" height="190" fill="#FFFFFF"/>
+
+  <line class="ln" x1="40" y1="95" x2="730" y2="95"/>
+  <circle class="dot" cx="60" cy="95" r="6"/>
+  <circle class="dot" cx="170" cy="95" r="6"/>
+  <circle class="dot" cx="300" cy="95" r="6"/>
+  <circle class="dot" cx="490" cy="95" r="6"/>
+  <circle class="dot" cx="700" cy="95" r="6"/>
+  <text class="b m" x="60" y="62">Detected</text>
+  <text class="s m" x="60" y="78">the clock starts</text>
+  <text class="b m" x="170" y="130">Classified as major</text>
+  <text class="s m" x="170" y="146">against set criteria</text>
+  <text class="b m" x="300" y="46">Initial notification</text>
+  <text class="s m" x="300" y="62">within 4 hours of classification,</text>
+  <text class="s m" x="300" y="78">24 hours of detection at most</text>
+  <text class="b m" x="490" y="130">Intermediate report</text>
+  <text class="s m" x="490" y="146">within 72 hours of the initial one</text>
+  <text class="b m" x="680" y="46">Final report</text>
+  <text class="s m" x="680" y="62">within one month of</text>
+  <text class="s m" x="680" y="78">the latest intermediate</text>
+  <text class="s" x="40" y="180">Not to scale.</text>
+
+</svg>

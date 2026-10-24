@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 230" width="860" height="230" role="img" aria-label="Traceability chain. A risk the business owns, such as payment fraud through a taken-over account, is reduced by a control, such as strong sign-in for payment staff, which is built into the identity platform and payments application, which is run as a security service: give the right people the right access. Each link is usually held in a different place.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="860" height="230" fill="#FFFFFF"/>
+
+  <defs><marker id="m21" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <text class="s m" x="215" y="34">reduced by</text>
+  <text class="s m" x="430" y="34">built into</text>
+  <text class="s m" x="645" y="34">run as</text>
+  <rect class="bw" x="20" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="32" y="72">Risk the business owns</text>
+  <text class="s" x="32" y="96">payment fraud through</text>
+  <text class="s" x="32" y="112">a taken-over account</text>
+  <rect class="bx" x="235" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="247" y="72">Control</text>
+  <text class="s" x="247" y="96">strong sign-in for</text>
+  <text class="s" x="247" y="112">payment staff</text>
+  <rect class="bx" x="450" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="462" y="72">Where it lives</text>
+  <text class="s" x="462" y="96">identity platform and</text>
+  <text class="s" x="462" y="112">payments application</text>
+  <rect class="ba" x="665" y="48" width="175" height="92" rx="5"/>
+  <text class="b ta" x="677" y="72">Security service</text>
+  <text class="s" x="677" y="96">give the right people</text>
+  <text class="s" x="677" y="112">the right access</text>
+  <line class="ln" x1="195" y1="94" x2="233" y2="94" marker-end="url(#m21)"/>
+  <line class="ln" x1="410" y1="94" x2="448" y2="94" marker-end="url(#m21)"/>
+  <line class="ln" x1="625" y1="94" x2="663" y2="94" marker-end="url(#m21)"/>
+  <text class="s m" x="107" y="162">risk register</text>
+  <text class="s m" x="322" y="162">control library</text>
+  <text class="s m" x="537" y="162">architecture repository</text>
+  <text class="s m" x="752" y="162">service catalogue</text>
+  <text class="s m" x="430" y="198">Today each link sits in a different tool, owned by a different team.</text>
+  <text class="s m" x="430" y="214">Joined, they show controls with no service behind them, and services serving no named risk.</text>
+
+</svg>

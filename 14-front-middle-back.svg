@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="860" height="380" role="img" aria-label="Business owners bring needs to the front layer of services and receive value from it. Behind it, the middle layer is a security factory of production lines, expert cells and a catalogue. Behind that, the back layer provides engineering, data and platforms. Business operations runs across all three layers.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="860" height="380" fill="#FFFFFF"/>
+
+  <defs><marker id="m14" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="bx" x="10" y="110" width="100" height="96" rx="6"/>
+  <text class="b m" x="60" y="146">Business</text>
+  <text class="b m" x="60" y="163">owners</text>
+  <text class="s m" x="60" y="182">the users</text>
+  <line class="ln" x1="110" y1="138" x2="148" y2="138" marker-end="url(#m14)"/>
+  <line class="ln" x1="148" y1="178" x2="112" y2="178" marker-end="url(#m14)"/>
+  <text class="s m" x="129" y="129">need</text>
+  <text class="s m" x="129" y="196">value</text>
+
+  <rect class="ba" x="150" y="24" width="200" height="268" rx="6"/>
+  <text class="b ta" x="164" y="48">Front: services</text>
+  <text class="s" x="164" y="66">owned by service owners</text>
+  <rect class="bx" x="164" y="82" width="172" height="38" rx="4"/><text class="s" x="174" y="105">Find and fix my weaknesses</text>
+  <rect class="bx" x="164" y="130" width="172" height="38" rx="4"/><text class="s" x="174" y="153">Help me change safely</text>
+  <rect class="bx" x="164" y="178" width="172" height="38" rx="4"/><text class="s" x="174" y="201">Tell me when it goes wrong</text>
+  <rect class="bx" x="164" y="226" width="172" height="38" rx="4"/><text class="s" x="174" y="249">Show I am within appetite</text>
+
+  <rect class="bx" x="370" y="24" width="220" height="268" rx="6"/>
+  <text class="b" x="384" y="48">Middle: security factory</text>
+  <text class="s" x="384" y="66">capabilities, quality, capacity</text>
+  <rect class="bg" x="384" y="82" width="192" height="54" rx="4"/><text class="s b" x="394" y="104">Production lines</text><text class="s" x="394" y="122">access, vetting, weaknesses</text>
+  <rect class="bd" x="384" y="146" width="192" height="54" rx="4"/><text class="s b" x="394" y="168">Expert cells</text><text class="s" x="394" y="186">intelligence, response, testing</text>
+  <rect class="bg" x="384" y="210" width="192" height="54" rx="4"/><text class="s b" x="394" y="232">Catalogue</text><text class="s" x="394" y="250">standard products, service levels</text>
+
+  <rect class="bx" x="610" y="24" width="200" height="268" rx="6"/>
+  <text class="b" x="624" y="48">Back: enabling</text>
+  <text class="s" x="624" y="66">what everything runs on</text>
+  <rect class="bg" x="624" y="82" width="172" height="38" rx="4"/><text class="s" x="634" y="105">Security engineering</text>
+  <rect class="bg" x="624" y="130" width="172" height="38" rx="4"/><text class="s" x="634" y="153">Data and analytics</text>
+  <rect class="bg" x="624" y="178" width="172" height="38" rx="4"/><text class="s" x="634" y="201">Platforms and tooling</text>
+
+  <line class="ln" x1="370" y1="158" x2="352" y2="158" marker-end="url(#m14)"/>
+  <line class="ln" x1="610" y1="158" x2="592" y2="158" marker-end="url(#m14)"/>
+
+  <line class="lm dash" x1="250" y1="292" x2="250" y2="312"/>
+  <line class="lm dash" x1="480" y1="292" x2="480" y2="312"/>
+  <line class="lm dash" x1="710" y1="292" x2="710" y2="312"/>
+  <rect class="bx" x="150" y="312" width="660" height="56" rx="6"/>
+  <text class="b" x="166" y="336">Business operations: people, plans, money, architecture, portfolio and governance</text>
+  <text class="s" x="166" y="355">owns the operating model; measured on the balance across the layers, not its own efficiency</text>
+
+</svg>

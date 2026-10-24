@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="760" height="440" role="img" aria-label="Triangle of three disciplines between strategy above and policy below. Service design speaks for desirability, enterprise architecture for feasibility, organisation design for viability. Each edge is a tension: variety against standards, journey against function, coherence against autonomy.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="760" height="440" fill="#FFFFFF"/>
+
+  <defs><marker id="m10" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkm"/></marker></defs>
+  <rect class="bx" x="120" y="12" width="520" height="38" rx="4"/>
+  <text class="b m" x="380" y="36">Strategy: where to spend the tension</text>
+  <line class="lm" x1="380" y1="50" x2="380" y2="72" marker-end="url(#m10)"/>
+  <rect class="ba" x="270" y="75" width="220" height="60" rx="6"/>
+  <text class="b m ta" x="380" y="100">Service design</text>
+  <text class="s m" x="380" y="120">desirable: does it work for the user?</text>
+  <rect class="bx" x="40" y="290" width="220" height="60" rx="6"/>
+  <text class="b m" x="150" y="315">Enterprise architecture</text>
+  <text class="s m" x="150" y="335">feasible: can we build and run it?</text>
+  <rect class="bx" x="500" y="290" width="220" height="60" rx="6"/>
+  <text class="b m" x="610" y="315">Organisation design</text>
+  <text class="s m" x="610" y="335">viable: can people sustain it?</text>
+  <line class="lw" x1="300" y1="135" x2="180" y2="290"/>
+  <line class="lw" x1="460" y1="135" x2="580" y2="290"/>
+  <line class="lw" x1="260" y1="320" x2="500" y2="320"/>
+  <text class="tw e" x="232" y="196">variety against</text>
+  <text class="tw e" x="232" y="212">standards</text>
+  <text class="tw" x="528" y="196">journey against</text>
+  <text class="tw" x="528" y="212">function</text>
+  <text class="tw m" x="380" y="310">coherence against autonomy</text>
+  <rect class="bx" x="120" y="392" width="520" height="38" rx="4"/>
+  <text class="b m" x="380" y="416">Policy and risk appetite: the limits that are not negotiable</text>
+  <line class="lm" x1="150" y1="392" x2="150" y2="354" marker-end="url(#m10)"/>
+  <line class="lm" x1="610" y1="392" x2="610" y2="354" marker-end="url(#m10)"/>
+
+</svg>

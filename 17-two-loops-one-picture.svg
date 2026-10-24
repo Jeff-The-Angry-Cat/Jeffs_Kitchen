@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 410" width="860" height="410" role="img" aria-label="Business intent and risk appetite at the top sets direction for two loops. The exposure loop, CTEM, runs slowly and always: scope, discover, prioritise, validate, mobilise. The response loop runs fast during attacks: observe, orient, decide, act. Both feed and read one common picture. At the bottom, one team of security, technology, the business, suppliers and staff provides signals and takes actions.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="860" height="410" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="m17" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+    <marker id="m17a" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+  </defs>
+  <rect class="ba" x="20" y="16" width="820" height="50" rx="5"/>
+  <text class="b m ta" x="430" y="38">Business intent and risk appetite</text>
+  <text class="s m" x="430" y="56">what matters most, and how much risk is acceptable</text>
+  <line class="ln" x1="150" y1="66" x2="150" y2="142" marker-end="url(#m17)"/>
+  <line class="ln" x1="430" y1="66" x2="430" y2="164" marker-end="url(#m17)"/>
+  <line class="ln" x1="660" y1="66" x2="660" y2="122" marker-end="url(#m17)"/>
+
+  <circle class="la" cx="200" cy="200" r="72"/>
+  <polygon class="mka" points="194,122 207,128 194,134"/>
+  <text class="b m" x="200" y="192">Exposure loop</text>
+  <text class="s m" x="200" y="209">CTEM</text>
+  <text class="s m" x="200" y="224">slow, always on</text>
+  <text class="s b m" x="200" y="112">Scope</text>
+  <text class="s b" x="280" y="176">Discover</text>
+  <text class="s b" x="250" y="292">Prioritise</text>
+  <text class="s b e" x="150" y="292">Validate</text>
+  <text class="s b e" x="120" y="176">Mobilise</text>
+
+  <rect class="ba" x="340" y="168" width="180" height="64" rx="6"/>
+  <text class="b m ta" x="430" y="196">Common picture</text>
+  <text class="s m" x="430" y="214">one view for everyone</text>
+  <line class="la" x1="276" y1="200" x2="336" y2="200" marker-start="url(#m17a)" marker-end="url(#m17a)"/>
+  <line class="la" x1="524" y1="200" x2="584" y2="200" marker-start="url(#m17a)" marker-end="url(#m17a)"/>
+
+  <circle class="lw" cx="660" cy="200" r="72"/>
+  <polygon class="mkw" points="726,194 732,207 738,194"/>
+  <text class="b m" x="660" y="192">Response loop</text>
+  <text class="s m" x="660" y="209">OODA</text>
+  <text class="s m" x="660" y="224">fast, during attacks</text>
+  <text class="s b e" x="600" y="138">Observe</text>
+  <text class="s b" x="722" y="138">Orient</text>
+  <text class="s b" x="722" y="272">Decide</text>
+  <text class="s b e" x="600" y="272">Act</text>
+
+  <line class="ln" x1="186" y1="338" x2="186" y2="276" marker-end="url(#m17)"/>
+  <line class="ln" x1="214" y1="278" x2="214" y2="338" marker-end="url(#m17)"/>
+  <line class="ln" x1="646" y1="338" x2="646" y2="276" marker-end="url(#m17)"/>
+  <line class="ln" x1="674" y1="278" x2="674" y2="338" marker-end="url(#m17)"/>
+  <line class="ln" x1="430" y1="236" x2="430" y2="338" marker-start="url(#m17)" marker-end="url(#m17)"/>
+  <text class="s e" x="180" y="320">signals</text>
+  <text class="s" x="220" y="320">actions</text>
+  <text class="s e" x="640" y="320">signals</text>
+  <text class="s" x="680" y="320">actions</text>
+  <text class="s" x="438" y="292">fed by all</text>
+
+  <rect class="bx" x="20" y="342" width="820" height="54" rx="5"/>
+  <text class="b m" x="430" y="364">One team</text>
+  <text class="s m" x="430" y="382">security, technology, the business, suppliers and staff</text>
+
+</svg>

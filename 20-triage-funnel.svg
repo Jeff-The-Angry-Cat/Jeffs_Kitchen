@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320" role="img" aria-label="Triage funnel. All signals, millions a day, pass a machine sift against critical-question thresholds, leaving thousands. Mission teams judge those within their arcs, leaving tens. Only a handful reach the decision-maker because a critical question has been answered. Everything is kept in the picture.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="760" height="320" fill="#FFFFFF"/>
+
+  <text class="cap" x="600" y="14">Illustrative volumes</text>
+  <polygon class="bx" points="10,20 570,20 510,76 70,76"/>
+  <text class="b m" x="290" y="44">All signals</text>
+  <text class="s m" x="290" y="62">logs, alerts, reports from staff and suppliers</text>
+  <polygon class="bx" points="70,84 510,84 450,140 130,140"/>
+  <text class="b m" x="290" y="108">Machine sift</text>
+  <text class="s m" x="290" y="126">matched against critical-question thresholds</text>
+  <polygon class="bx" points="130,148 450,148 390,204 190,204"/>
+  <text class="b m" x="290" y="172">Mission team</text>
+  <text class="s m" x="290" y="190">judges within its arc</text>
+  <polygon class="ba" points="190,212 390,212 350,268 230,268"/>
+  <text class="b m ta" x="290" y="236">Decision-maker</text>
+  <text class="s m" x="290" y="254">questions answered</text>
+  <text class="s" x="600" y="52">millions a day</text>
+  <text class="s" x="600" y="116">thousands</text>
+  <text class="s" x="600" y="180">tens</text>
+  <text class="s ta b" x="600" y="244">a handful</text>
+  <text class="s m" x="380" y="304">Everything is kept in the common picture. Only urgency decides who is interrupted.</text>
+
+</svg>

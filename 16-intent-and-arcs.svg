@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 384" width="880" height="384" role="img" aria-label="Left: intent nested from the firm to the payments business owner to the security department to a security team, which reads intent two levels up. Right: arcs of fire. Inside the inner arc, a team may act then tell: lock an account, isolate a laptop, block a bad web address. In the outer arc it must ask the business first: take a payment service offline, tell a regulator or customers.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="880" height="384" fill="#FFFFFF"/>
+
+  <text class="h" x="20" y="24">Intent, nested</text>
+  <rect class="bg" x="20" y="40" width="410" height="324" rx="6"/>
+  <text class="b" x="34" y="62">Firm</text>
+  <text class="s" x="34" y="78">Grow digital payments within appetite</text>
+  <rect class="bx" x="40" y="92" width="370" height="262" rx="6"/>
+  <text class="b" x="54" y="114">Payments business owner</text>
+  <text class="s" x="54" y="130">Customers can always pay; outages stay within tolerance</text>
+  <rect class="bg" x="60" y="146" width="330" height="198" rx="6"/>
+  <text class="b" x="74" y="168">Security department</text>
+  <text class="s" x="74" y="184">See threats early and act before harm is done</text>
+  <rect class="ba" x="80" y="200" width="290" height="134" rx="6"/>
+  <text class="b ta" x="94" y="222">Security team</text>
+  <text class="s" x="94" y="238">No attacker keeps a foothold in payments</text>
+  <text class="s ta" x="94" y="276">Reads intent two levels up:</text>
+  <text class="s ta" x="94" y="292">the department's, and the</text>
+  <text class="s ta" x="94" y="308">payments owner's</text>
+
+  <text class="h" x="470" y="24">Arcs of fire: authority set in advance</text>
+  <path class="bw" d="M801.2,270 L861.9,235 A210,210 0 0 0 498.1,235 L558.8,270 A140,140 0 0 1 801.2,270 Z"/>
+  <path class="ba" d="M680,340 L801.2,270 A140,140 0 0 0 558.8,270 Z"/>
+  <text class="b m tw" x="680" y="158">Ask the business first</text>
+  <text class="s m" x="680" y="176">Take a payment service offline</text>
+  <text class="s m" x="680" y="192">Tell a regulator or customers</text>
+  <text class="b m ta" x="680" y="232">Act, then tell</text>
+  <text class="s m" x="680" y="252">Lock an account</text>
+  <text class="s m" x="680" y="268">Isolate a laptop</text>
+  <text class="s m" x="680" y="284">Block a bad address</text>
+  <circle class="dota" cx="680" cy="340" r="5"/>
+  <text class="s m" x="680" y="360">the team</text>
+  <text class="s m" x="680" y="378">The business owner draws the line, in calm conditions.</text>
+
+</svg>

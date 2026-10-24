@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" width="860" height="420" role="img" aria-label="The data spine. Intent and risk appetite set the critical questions, which shape the collection plan. Everything seen goes into the common picture. Each signal meets one test: does it answer a critical question? If yes, push it to the decision-maker now. If it falls within a team's mission, the team acts within its arc and records it. Otherwise record it without pushing. Decisions then refine the intent and questions.">
+<style>
+text{fill:#17212B;font-size:13px;font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif}
+.s{font-size:11.5px;fill:#56616B} .b{font-weight:600} .h{font-size:14.5px;font-weight:600}
+.m{text-anchor:middle} .e{text-anchor:end} .ta{fill:#0A5550} .tw{fill:#8A3F06}
+.cap{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;fill:#56616B;font-weight:600}
+.bx{fill:#FFFFFF;stroke:#8F9A97;stroke-width:1.2} .bg{fill:#F4F6F3;stroke:#D8DDD8;stroke-width:1}
+.ba{fill:#DDEFEC;stroke:#0E6B66;stroke-width:1.6} .bw{fill:#FBEADB;stroke:#B4540A;stroke-width:1.6}
+.bd{fill:none;stroke:#8F9A97;stroke-width:1.2;stroke-dasharray:5 4}
+.ln{stroke:#17212B;stroke-width:1.4;fill:none} .lm{stroke:#8F9A97;stroke-width:1.2;fill:none}
+.la{stroke:#0E6B66;stroke-width:2.2;fill:none} .lw{stroke:#B4540A;stroke-width:2.2;fill:none}
+.dash{stroke-dasharray:6 5} .mk{fill:#17212B} .mka{fill:#0E6B66} .mkw{fill:#B4540A} .mkm{fill:#8F9A97}
+.fa{fill:#DDEFEC} .fw{fill:#FBEADB} .dot{fill:#B4540A} .dota{fill:#0E6B66}
+</style>
+<rect x="0" y="0" width="860" height="420" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="m19" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+    <marker id="m19m" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkm"/></marker>
+  </defs>
+  <rect class="ba" x="40" y="30" width="210" height="54" rx="5"/>
+  <text class="b m ta" x="145" y="53">Intent and risk appetite</text>
+  <text class="s m" x="145" y="71">set by the business</text>
+  <rect class="ba" x="320" y="30" width="210" height="54" rx="5"/>
+  <text class="b m ta" x="425" y="53">Critical questions</text>
+  <text class="s m" x="425" y="71">few, owned, dated</text>
+  <rect class="bx" x="600" y="30" width="220" height="54" rx="5"/>
+  <text class="b m" x="710" y="53">Collection plan</text>
+  <text class="s m" x="710" y="71">what every team watches first</text>
+  <line class="ln" x1="250" y1="57" x2="318" y2="57" marker-end="url(#m19)"/>
+  <line class="ln" x1="530" y1="57" x2="598" y2="57" marker-end="url(#m19)"/>
+  <line class="ln" x1="710" y1="84" x2="710" y2="148" marker-end="url(#m19)"/>
+
+  <rect class="ba" x="600" y="150" width="220" height="54" rx="5"/>
+  <text class="b m ta" x="710" y="173">Common picture</text>
+  <text class="s m" x="710" y="191">everything seen is recorded</text>
+  <line class="ln" x1="600" y1="177" x2="534" y2="177" marker-end="url(#m19)"/>
+
+  <polygon class="bx" points="430,127 530,177 430,227 330,177"/>
+  <text class="s b m" x="430" y="173">Does it answer a</text>
+  <text class="s b m" x="430" y="189">critical question?</text>
+  <line class="lm dash" x1="425" y1="84" x2="428" y2="124" marker-end="url(#m19m)"/>
+  <text class="s" x="440" y="110">sets the rule</text>
+
+  <polyline class="la" points="330,177 145,177 145,286" marker-end="url(#m19)"/>
+  <text class="s b ta" x="240" y="170">yes</text>
+  <line class="ln" x1="430" y1="227" x2="430" y2="286" marker-end="url(#m19)"/>
+  <text class="s b" x="438" y="262">within a mission</text>
+  <line class="lm" x1="480" y1="202" x2="704" y2="286" marker-end="url(#m19m)"/>
+  <text class="s b" x="600" y="236">neither</text>
+
+  <rect class="ba" x="40" y="290" width="210" height="58" rx="5"/>
+  <text class="b m ta" x="145" y="314">Push to the</text>
+  <text class="b m ta" x="145" y="332">decision-maker now</text>
+  <rect class="bx" x="320" y="290" width="220" height="58" rx="5"/>
+  <text class="b m" x="430" y="314">Team acts within</text>
+  <text class="b m" x="430" y="332">its arc, and records it</text>
+  <rect class="bg" x="600" y="290" width="220" height="58" rx="5"/>
+  <text class="b m" x="710" y="314">Record it,</text>
+  <text class="b m" x="710" y="332">don't push it</text>
+
+  <polyline class="lm dash" points="40,319 24,319 24,57 38,57" marker-end="url(#m19m)"/>
+  <text class="s" transform="translate(18 290) rotate(-90)">decisions refine intent and questions</text>
+  <text class="s m" x="430" y="392">Nothing is deleted. The filter decides what interrupts people, not what is kept.</text>
+
+</svg>
