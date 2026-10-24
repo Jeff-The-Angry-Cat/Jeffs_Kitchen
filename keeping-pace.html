@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keeping Pace · Half Baked</title>
+  <meta name="description" content="One operating model for a security department in an accelerating world, and why it has to be designed as a whole.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+/* Layout: long-form essay. Sticky contents rail on wide screens, one reading column, figures at column width with their own scroll on phones. */
+:root {
+  --bg: #fbf6ee; --panel: #FFFFFF; --ink: #2f2a26; --muted: #7a6f66;
+  --rule: #eadfce; --rule-strong: #b3a48f;
+  --acc: #b5652b; --acc-soft: #fbe1c8; --acc-ink: #94501f;
+  --warn: #a8382d; --warn-soft: #f6dcd8; --warn-ink: #8c2c22;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--serif); font-size: 18px; line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+  counter-reset: fig;
+}
+.page { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+@media (min-width: 1080px) { .page { grid-template-columns: 230px minmax(0, 760px); } }
+nav.toc { display: none; }
+@media (min-width: 1080px) {
+  nav.toc { display: block; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; max-height: calc(100vh - 48px); overflow-y: auto; padding-top: 72px; font-family: var(--sans); font-size: 13px; line-height: 1.4; }
+}
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+nav.toc ol ol { padding-left: 12px; margin: 4px 0 8px; gap: 2px; }
+nav.toc a { color: var(--muted); text-decoration: none; display: block; padding: 2px 0; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--acc-ink); }
+nav.toc .tl { font-weight: 600; color: var(--ink); }
+main { min-width: 0; }
+header.mast { padding: 72px 0 32px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; }
+.eyebrow { font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--acc-ink); font-weight: 600; margin: 0 0 14px; }
+h1 { font-size: clamp(40px, 6vw, 62px); line-height: 1.04; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.dek { font-size: 22px; line-height: 1.4; color: var(--muted); margin: 0 0 22px; max-width: 34em; text-wrap: balance; }
+.meta { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin: 0; }
+h2 { font-size: 32px; line-height: 1.15; margin: 72px 0 8px; text-wrap: balance; font-weight: 700; }
+h2 .pn { display: block; font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--acc-ink); font-weight: 600; margin-bottom: 10px; }
+h3 { font-size: 23px; line-height: 1.25; margin: 44px 0 6px; text-wrap: balance; font-weight: 600; }
+h4 { font-family: var(--sans); font-size: 15px; margin: 28px 0 4px; font-weight: 600; letter-spacing: 0.01em; }
+p, ul, ol { max-width: 66ch; }
+p { margin: 0 0 16px; }
+ul, ol { padding-left: 1.3em; margin: 0 0 18px; }
+li { margin-bottom: 6px; }
+a { color: var(--acc-ink); text-underline-offset: 2px; }
+strong { font-weight: 600; }
+.lead { font-size: 20px; line-height: 1.55; }
+.explain { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 20px; margin: 22px 0 24px; max-width: 66ch; }
+.explain .tag { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 6px; }
+.explain p:last-child { margin-bottom: 0; }
+.explain p { font-size: 16.5px; line-height: 1.58; }
+.key { border-left: 3px solid var(--acc); padding: 4px 0 4px 18px; margin: 26px 0; font-size: 20px; line-height: 1.5; max-width: 62ch; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 26px 0 28px; }
+.stat { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; min-width: 0; }
+.stat .n { font-family: var(--sans); font-size: 30px; font-weight: 600; line-height: 1.1; color: var(--warn-ink); font-variant-numeric: tabular-nums; }
+.stat .l { font-family: var(--sans); font-size: 13px; line-height: 1.4; color: var(--muted); margin-top: 6px; }
+figure { margin: 30px 0 34px; counter-increment: fig; }
+.fig-scroll { overflow-x: auto; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 10px; }
+.fig-scroll svg { display: block; width: 100%; min-width: 640px; height: auto; margin: 0 auto; }
+figcaption { font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--muted); margin-top: 10px; max-width: 70ch; }
+figcaption::before { content: "Figure " counter(fig) ". "; font-weight: 600; color: var(--ink); }
+.tbl { overflow-x: auto; margin: 22px 0 28px; }
+table { border-collapse: collapse; width: 100%; font-family: var(--sans); font-size: 14.5px; line-height: 1.45; min-width: 560px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; font-size: 13px; color: var(--muted); border-bottom: 1.5px solid var(--rule-strong); }
+td:first-child { font-weight: 500; }
+.note { font-family: var(--sans); font-size: 14px; color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 56px 0; }
+.sources li { font-size: 16px; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+
+/* Diagram vocabulary: every colour from tokens so both themes read */
+svg.dg { font-family: var(--sans); color: var(--ink); }
+svg.dg text { fill: var(--ink); font-size: 13px; }
+svg.dg .s { font-size: 11.5px; fill: var(--muted); }
+svg.dg .b { font-weight: 600; }
+svg.dg .h { font-size: 14.5px; font-weight: 600; }
+svg.dg .m { text-anchor: middle; }
+svg.dg .e { text-anchor: end; }
+svg.dg .ta { fill: var(--acc-ink); }
+svg.dg .tw { fill: var(--warn-ink); }
+svg.dg .cap { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted); font-weight: 600; }
+svg.dg .bx { fill: var(--panel); stroke: var(--rule-strong); stroke-width: 1.2; }
+svg.dg .bg { fill: var(--bg); stroke: var(--rule); stroke-width: 1; }
+svg.dg .ba { fill: var(--acc-soft); stroke: var(--acc); stroke-width: 1.6; }
+svg.dg .bw { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.6; }
+svg.dg .bd { fill: none; stroke: var(--rule-strong); stroke-width: 1.2; stroke-dasharray: 5 4; }
+svg.dg .ln { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+svg.dg .lm { stroke: var(--rule-strong); stroke-width: 1.2; fill: none; }
+svg.dg .la { stroke: var(--acc); stroke-width: 2.2; fill: none; }
+svg.dg .lw { stroke: var(--warn); stroke-width: 2.2; fill: none; }
+svg.dg .dash { stroke-dasharray: 6 5; }
+svg.dg .mk { fill: var(--ink); }
+svg.dg .mka { fill: var(--acc); }
+svg.dg .mkw { fill: var(--warn); }
+svg.dg .mkm { fill: var(--rule-strong); }
+svg.dg .fa { fill: var(--acc-soft); }
+svg.dg .fw { fill: var(--warn-soft); }
+svg.dg .dot { fill: var(--warn); }
+svg.dg .dota { fill: var(--acc); }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* Half Baked fit */
+header .wrap, footer .wrap { max-width: 1120px; padding: 0; }
+nav.toc a { margin-left: 0; font-size: 13px; }
+header.mast { padding-top: 24px; }
+.page { padding-top: 8px; }
+.feedback { max-width: 66ch; }
+.feedback ul { margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a class="site-name" href="index.html">Half <span>Baked</span></a>
+      <nav>
+        <a href="index.html">Ideas</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+<div class="page">
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a class="tl" href="#brief">In brief</a></li>
+    <li><a class="tl" href="#pace">1. The pace problem</a>
+      <ol>
+        <li><a href="#squeeze">Two accelerations</a></li>
+        <li><a href="#minutes">Attacks in days and minutes</a></li>
+        <li><a href="#clocks">Regulators set the clock</a></li>
+        <li><a href="#gap">The gap</a></li>
+      </ol>
+    </li>
+    <li><a class="tl" href="#strain">2. Where today's models strain</a>
+      <ol>
+        <li><a href="#responding">Responding to issues</a></li>
+        <li><a href="#people">Managing people</a></li>
+        <li><a href="#root">One root cause</a></li>
+      </ol>
+    </li>
+    <li><a class="tl" href="#design">3. A common operating model</a>
+      <ol>
+        <li><a href="#three">Three disciplines, one design</a></li>
+        <li><a href="#conway">Conway's law</a></li>
+        <li><a href="#star">Galbraith's Star</a></li>
+        <li><a href="#shape">The shape of the model</a></li>
+        <li><a href="#rulebook">The business owns the risk</a></li>
+        <li><a href="#intent">Direction and freedom</a></li>
+        <li><a href="#loops">Two loops, one picture</a></li>
+      </ol>
+    </li>
+    <li><a class="tl" href="#data">4. Data: a common view</a>
+      <ol>
+        <li><a href="#hold">Three ways to hold data</a></li>
+        <li><a href="#spine">The data spine</a></li>
+        <li><a href="#ccir">Critical questions</a></li>
+        <li><a href="#trace">Traceability</a></li>
+        <li><a href="#measures">Measures</a></li>
+        <li><a href="#load">Information load</a></li>
+      </ol>
+    </li>
+    <li><a class="tl" href="#whole">5. Bringing it together</a>
+      <ol>
+        <li><a href="#start">Where to start</a></li>
+        <li><a href="#limits">Where the military lessons stop</a></li>
+        <li><a href="#open">Open questions</a></li>
+      </ol>
+    </li>
+    <li><a class="tl" href="#glossary">Glossary</a></li>
+    <li><a class="tl" href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="mast">
+  <span class="status mixing">Just mixing</span>
+  <p class="eyebrow" style="margin-top:14px">Master paper · Organisation design, enterprise architecture and service design</p>
+  <h1>Keeping Pace</h1>
+  <p class="dek">One operating model for a security department in an accelerating world, and why it has to be designed as a whole.</p>
+  <p class="meta">October 2026 · Draws together the earlier papers in this series</p>
+</header>
+
+<section id="brief" aria-labelledby="brief-h">
+<h2 id="brief-h">In brief</h2>
+<p class="lead">Business change and attacker activity are both speeding up. A security department organised as separate teams cannot keep up by working harder. It needs one team, working from one shared picture, acting within limits the business has set.</p>
+<p>That model cannot be bought or decreed. It comes about only when service design, enterprise architecture and organisation design work together, because each shapes the others. Galbraith's Star Model holds them together. Underneath sits data: not one giant store, but a common view with shared definitions and a short list of critical questions that decides what reaches a decision-maker.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 900 190" role="img" aria-label="The argument in five steps: the pace, the strain, the design, the data, the whole. Each step leads to the next.">
+  <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="bw" x="10" y="35" width="160" height="120" rx="6"/>
+  <text class="cap" x="24" y="60">Part 1</text>
+  <text class="h" x="24" y="84">The pace</text>
+  <text class="s" x="24" y="108">Business change and</text>
+  <text class="s" x="24" y="124">attackers both speed up</text>
+
+  <rect class="bx" x="195" y="35" width="160" height="120" rx="6"/>
+  <text class="cap" x="209" y="60">Part 2</text>
+  <text class="h" x="209" y="84">The strain</text>
+  <text class="s" x="209" y="108">Silos slow the response</text>
+  <text class="s" x="209" y="124">and wear people out</text>
+
+  <rect class="bx" x="380" y="35" width="160" height="120" rx="6"/>
+  <text class="cap" x="394" y="60">Part 3</text>
+  <text class="h" x="394" y="84">The design</text>
+  <text class="s" x="394" y="108">Service, architecture and</text>
+  <text class="s" x="394" y="124">organisation as one Star</text>
+
+  <rect class="ba" x="565" y="35" width="160" height="120" rx="6"/>
+  <text class="cap" x="579" y="60">Part 4</text>
+  <text class="h" x="579" y="84">The data</text>
+  <text class="s" x="579" y="108">A common view,</text>
+  <text class="s" x="579" y="124">not one big store</text>
+
+  <rect class="ba" x="750" y="35" width="140" height="120" rx="6"/>
+  <text class="cap" x="764" y="60">Part 5</text>
+  <text class="h" x="764" y="84">The whole</text>
+  <text class="s" x="764" y="108">One team, one picture,</text>
+  <text class="s" x="764" y="124">within appetite</text>
+
+  <line class="ln" x1="170" y1="95" x2="193" y2="95" marker-end="url(#m1)"/>
+  <line class="ln" x1="355" y1="95" x2="378" y2="95" marker-end="url(#m1)"/>
+  <line class="ln" x1="540" y1="95" x2="563" y2="95" marker-end="url(#m1)"/>
+  <line class="ln" x1="725" y1="95" x2="748" y2="95" marker-end="url(#m1)"/>
+</svg>
+</div>
+<figcaption>The argument in five steps. Each part answers the problem the one before it raises.</figcaption>
+</figure>
+<p>The starting point is the one every earlier paper shares. The business owns the risk. Security helps it stay within its <strong>risk appetite</strong>, the level of risk it has chosen to accept. Military ideas appear only where they add something, and each is explained where it first appears.</p>
+</section>
+
+<section id="pace" aria-labelledby="pace-h">
+<h2 id="pace-h"><span class="pn">Part 1</span>The pace problem</h2>
+<p class="lead">The department is squeezed from two sides. The business wants to change faster, and attackers are moving faster. Both land on the same people.</p>
+
+<h3 id="squeeze">Two accelerations, one squeeze</h3>
+<p>The business releases digital services constantly, runs on cloud platforms and hundreds of suppliers, and is building AI into its products and work. Security exists so it can make those changes safely, so speed is part of the service. Meanwhile attackers are better organised and increasingly automated, and regulators expect serious incidents to be handled and reported within hours.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 900 330" role="img" aria-label="Business demand pushes from one side and threat activity from the other, with regulators' reporting clocks above. All three land on one security department with fixed people, budget and hours.">
+  <defs>
+    <marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+    <marker id="m2w" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkw"/></marker>
+  </defs>
+  <text class="h" x="20" y="34">Business demand</text>
+  <rect class="bx" x="20" y="50" width="270" height="34" rx="4"/><text x="32" y="72">More digital services, released faster</text>
+  <rect class="bx" x="20" y="94" width="270" height="34" rx="4"/><text x="32" y="116">Cloud platforms and many more suppliers</text>
+  <rect class="bx" x="20" y="138" width="270" height="34" rx="4"/><text x="32" y="160">AI built into products and daily work</text>
+  <rect class="bx" x="20" y="182" width="270" height="34" rx="4"/><text x="32" y="204">Data shared with partners and customers</text>
+  <rect class="bx" x="20" y="226" width="270" height="34" rx="4"/><text x="32" y="248">Customers expect it always to work</text>
+
+  <text class="h e" x="880" y="34">Threat activity</text>
+  <rect class="bw" x="610" y="50" width="270" height="34" rx="4"/><text x="622" y="72">Weaknesses exploited within days</text>
+  <rect class="bw" x="610" y="94" width="270" height="34" rx="4"/><text x="622" y="116">Intruders spread in under an hour</text>
+  <rect class="bw" x="610" y="138" width="270" height="34" rx="4"/><text x="622" y="160">AI-written phishing and faked voices</text>
+  <rect class="bw" x="610" y="182" width="270" height="34" rx="4"/><text x="622" y="204">Extortion run as an industry</text>
+  <rect class="bw" x="610" y="226" width="270" height="34" rx="4"/><text x="622" y="248">Attacks that arrive through suppliers</text>
+
+  <rect class="bx" x="340" y="20" width="220" height="44" rx="4"/>
+  <text class="b m" x="450" y="40">Regulators</text>
+  <text class="s m" x="450" y="56">reporting clocks set in hours</text>
+  <line class="ln" x1="450" y1="64" x2="450" y2="128" marker-end="url(#m2)"/>
+
+  <rect class="ba" x="360" y="130" width="180" height="96" rx="6"/>
+  <text class="h m" x="450" y="158">Security department</text>
+  <text class="s m" x="450" y="182">the same people, budget</text>
+  <text class="s m" x="450" y="198">and hours in the day</text>
+
+  <line class="lm" x1="290" y1="67" x2="358" y2="150" marker-end="url(#m2)"/>
+  <line class="lm" x1="290" y1="111" x2="358" y2="162" marker-end="url(#m2)"/>
+  <line class="lm" x1="290" y1="155" x2="358" y2="175" marker-end="url(#m2)"/>
+  <line class="lm" x1="290" y1="199" x2="358" y2="188" marker-end="url(#m2)"/>
+  <line class="lm" x1="290" y1="243" x2="358" y2="202" marker-end="url(#m2)"/>
+
+  <line class="lw" x1="610" y1="67" x2="542" y2="150" marker-end="url(#m2w)"/>
+  <line class="lw" x1="610" y1="111" x2="542" y2="162" marker-end="url(#m2w)"/>
+  <line class="lw" x1="610" y1="155" x2="542" y2="175" marker-end="url(#m2w)"/>
+  <line class="lw" x1="610" y1="199" x2="542" y2="188" marker-end="url(#m2w)"/>
+  <line class="lw" x1="610" y1="243" x2="542" y2="202" marker-end="url(#m2w)"/>
+
+  <text class="m s" x="450" y="300">Both pressures grow each year. The capacity in the middle does not.</text>
+</svg>
+</div>
+<figcaption>The squeeze. Business change and attacker activity push on the same department, while regulators set the clock.</figcaption>
+</figure>
+
+<h3 id="minutes">Attacks now move in days and minutes</h3>
+<p>Google's Mandiant team tracks how long attackers take to use a newly known weakness. The average fell from 63 days in 2018–19 to 5 days in 2023. Once inside, intruders move fast: CrowdStrike's 2025 report puts the average time to spread beyond the first machine at 48 minutes.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 230" role="img" aria-label="Average time to exploit a newly disclosed weakness: 63 days in 2018 to 2019, 44 days in 2020, 32 days in 2021 to 2022, and 5 days in 2023.">
+  <text class="cap" x="160" y="18">Average days from disclosure to exploitation</text>
+  <line class="lm" x1="160" y1="30" x2="160" y2="200"/>
+  <text class="e" x="148" y="54">2018–19</text>
+  <rect class="bx" x="160" y="36" width="520" height="28" rx="2"/>
+  <text class="b" x="690" y="55">63</text>
+  <text class="e" x="148" y="98">2020</text>
+  <rect class="bx" x="160" y="80" width="363" height="28" rx="2"/>
+  <text class="b" x="533" y="99">44</text>
+  <text class="e" x="148" y="142">2021–22</text>
+  <rect class="bx" x="160" y="124" width="264" height="28" rx="2"/>
+  <text class="b" x="434" y="143">32</text>
+  <text class="e b" x="148" y="186">2023</text>
+  <rect class="bw" x="160" y="168" width="41" height="28" rx="2"/>
+  <text class="b tw" x="211" y="187">5</text>
+  <text class="s" x="232" y="187">patching on a monthly cycle no longer keeps up</text>
+</svg>
+</div>
+<figcaption>Time to exploit has fallen from about two months to under a week. Source: <a href="https://cloud.google.com/blog/topics/threat-intelligence/time-to-exploit-trends-2023">Google Cloud / Mandiant (2024)</a>. The 2023 figure excludes 15 outliers.</figcaption>
+</figure>
+<div class="stats">
+  <div class="stat"><div class="n">5 days</div><div class="l">average time to exploit a new weakness in 2023, down from 63</div></div>
+  <div class="stat"><div class="n">48 min</div><div class="l">average time for an intruder to spread beyond the first machine</div></div>
+  <div class="stat"><div class="n">51 sec</div><div class="l">fastest breakout CrowdStrike observed</div></div>
+  <div class="stat"><div class="n">4 hours</div><div class="l">to notify the regulator once an incident is classed as major, under DORA</div></div>
+</div>
+<p>These figures come from companies that sell defences, but the direction is not in doubt. A process that needs a ticket, a weekly meeting and a sign-off is now slower than the attack it is meant to stop.</p>
+
+<h3 id="clocks">Regulators have set the clock</h3>
+<p>The EU's Digital Operational Resilience Act (DORA) and the UK's operational resilience rules expect firms to know their most important services, set limits on disruption, and report serious incidents fast. The hard part is not the form. It is knowing within hours that something is serious, and getting that fact to the person who must decide.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 190" role="img" aria-label="DORA reporting clock: after an incident is detected and classified as major, the initial notification is due within four hours of classification and no later than 24 hours after detection; the intermediate report within 72 hours of the initial one; the final report within one month of the latest intermediate report.">
+  <line class="ln" x1="40" y1="95" x2="730" y2="95"/>
+  <circle class="dot" cx="60" cy="95" r="6"/>
+  <circle class="dot" cx="170" cy="95" r="6"/>
+  <circle class="dot" cx="300" cy="95" r="6"/>
+  <circle class="dot" cx="490" cy="95" r="6"/>
+  <circle class="dot" cx="700" cy="95" r="6"/>
+  <text class="b m" x="60" y="62">Detected</text>
+  <text class="s m" x="60" y="78">the clock starts</text>
+  <text class="b m" x="170" y="130">Classified as major</text>
+  <text class="s m" x="170" y="146">against set criteria</text>
+  <text class="b m" x="300" y="46">Initial notification</text>
+  <text class="s m" x="300" y="62">within 4 hours of classification,</text>
+  <text class="s m" x="300" y="78">24 hours of detection at most</text>
+  <text class="b m" x="490" y="130">Intermediate report</text>
+  <text class="s m" x="490" y="146">within 72 hours of the initial one</text>
+  <text class="b m" x="680" y="46">Final report</text>
+  <text class="s m" x="680" y="62">within one month of</text>
+  <text class="s m" x="680" y="78">the latest intermediate</text>
+  <text class="s" x="40" y="180">Not to scale.</text>
+</svg>
+</div>
+<figcaption>DORA's reporting clock for a major incident. Source: <a href="https://www.fma.gv.at/en/dora-ict-related-incidents/">Austrian Financial Market Authority, on Delegated Regulation (EU) 2025/301</a>.</figcaption>
+</figure>
+
+<h3 id="gap">The gap</h3>
+<p>The pace of attack and business change rises steeply. The speed at which separate teams can notice, decide and act rises slowly, because every signal travels through the organisation chart. The space between is risk nobody chose.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 300" role="img" aria-label="Illustrative chart. The pace of attack and business change rises steeply over time. The speed at which a siloed organisation decides rises slowly. The gap between them is unchosen exposure. A one-team model follows the faster line much more closely.">
+  <text class="cap" x="60" y="22">Illustrative, not measured</text>
+  <line class="lm" x1="60" y1="40" x2="60" y2="260"/>
+  <line class="lm" x1="60" y1="260" x2="730" y2="260"/>
+  <text class="s" x="725" y="280" text-anchor="end">time</text>
+  <text class="s" x="50" y="48" text-anchor="end">faster</text>
+  <path class="fw" d="M60,236 C300,228 480,180 720,48 L720,206 L60,238 Z"/>
+  <path class="lw" d="M60,236 C300,228 480,180 720,48"/>
+  <path class="ln" d="M60,238 L720,206"/>
+  <path class="la dash" d="M60,237 C300,226 500,176 720,82"/>
+  <line class="lw" x1="80" y1="62" x2="112" y2="62"/><text x="122" y="66">Pace of attack and business change</text>
+  <line class="la dash" x1="80" y1="86" x2="112" y2="86"/><text x="122" y="90">How fast a one-team model can decide</text>
+  <line class="ln" x1="80" y1="110" x2="112" y2="110"/><text x="122" y="114">How fast a department of separate teams can decide</text>
+  <text class="tw m" x="610" y="168">The gap:</text>
+  <text class="tw m" x="610" y="184">risk nobody chose</text>
+</svg>
+</div>
+<figcaption>The gap is closed by changing how teams work together, not by each team working harder.</figcaption>
+</figure>
+<p class="key">We need to do something, and the something is design.</p>
+</section>
+
+<section id="strain" aria-labelledby="strain-h">
+<h2 id="strain-h"><span class="pn">Part 2</span>Where today's operating models strain</h2>
+<p class="lead">Most departments are organised as separate teams with their own tools, data and managers. That shape slows the response to issues, and it makes the department hard to lead and hard to work in.</p>
+
+<h3 id="responding">Responding to issues</h3>
+<p><strong>Information climbs and crosses.</strong> Identity, network, cloud, monitoring and policy teams work as "silos": information travels up and down each one but rarely across. Attackers ignore those boundaries. So a warning seen by one team must climb one chain of command and come down another before anyone acts.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 900 386" role="img" aria-label="Left: in separate teams, a warning seen by monitoring climbs to its lead, to the head of security, down to the identity lead and then to the identity team: four hand-offs. Right: with one shared picture, monitoring adds the signal to the picture and the identity team acts on it directly: two steps, with the decision-maker told only if a critical question is answered.">
+  <defs>
+    <marker id="m6w" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkw"/></marker>
+    <marker id="m6a" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+    <marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkm"/></marker>
+  </defs>
+  <text class="h" x="20" y="24">Today: the signal climbs and crosses</text>
+  <rect class="bx" x="140" y="40" width="170" height="36" rx="4"/><text class="b m" x="225" y="63">Head of security</text>
+  <g>
+    <rect class="bg" x="20" y="100" width="76" height="200" rx="4"/>
+    <rect class="bg" x="102" y="100" width="76" height="200" rx="4"/>
+    <rect class="bg" x="184" y="100" width="76" height="200" rx="4"/>
+    <rect class="bg" x="266" y="100" width="76" height="200" rx="4"/>
+    <rect class="bg" x="348" y="100" width="76" height="200" rx="4"/>
+    <text class="s b m" x="58" y="318">Identity</text>
+    <text class="s b m" x="140" y="318">Network</text>
+    <text class="s b m" x="222" y="318">Cloud</text>
+    <text class="s b m" x="304" y="318">Monitoring</text>
+    <text class="s b m" x="386" y="318">Policy</text>
+    <rect class="bx" x="30" y="136" width="56" height="24" rx="3"/><text class="s m" x="58" y="152">lead</text>
+    <rect class="bx" x="112" y="136" width="56" height="24" rx="3"/><text class="s m" x="140" y="152">lead</text>
+    <rect class="bx" x="194" y="136" width="56" height="24" rx="3"/><text class="s m" x="222" y="152">lead</text>
+    <rect class="bx" x="276" y="136" width="56" height="24" rx="3"/><text class="s m" x="304" y="152">lead</text>
+    <rect class="bx" x="358" y="136" width="56" height="24" rx="3"/><text class="s m" x="386" y="152">lead</text>
+    <rect class="bx" x="30" y="256" width="56" height="30" rx="3"/><text class="s m" x="58" y="275">team</text>
+    <rect class="bx" x="112" y="256" width="56" height="30" rx="3"/><text class="s m" x="140" y="275">team</text>
+    <rect class="bx" x="194" y="256" width="56" height="30" rx="3"/><text class="s m" x="222" y="275">team</text>
+    <rect class="bx" x="276" y="256" width="56" height="30" rx="3"/><text class="s m" x="304" y="275">team</text>
+    <rect class="bx" x="358" y="256" width="56" height="30" rx="3"/><text class="s m" x="386" y="275">team</text>
+  </g>
+  <polyline class="lw" points="304,256 304,164 268,80" marker-end="url(#m6w)"/>
+  <polyline class="lw" points="182,78 60,134" marker-end="url(#m6w)"/>
+  <line class="lw" x1="58" y1="162" x2="58" y2="252" marker-end="url(#m6w)"/>
+  <circle class="bw" cx="304" cy="212" r="10"/><text class="s b m tw" x="304" y="216">1</text>
+  <circle class="bw" cx="280" cy="108" r="10"/><text class="s b m tw" x="280" y="112">2</text>
+  <circle class="bw" cx="121" cy="106" r="10"/><text class="s b m tw" x="121" y="110">3</text>
+  <circle class="bw" cx="58" cy="206" r="10"/><text class="s b m tw" x="58" y="210">4</text>
+  <text class="s m tw" x="304" y="334">seen here</text>
+  <text class="s m tw" x="58" y="334">acted on here</text>
+  <text class="s" x="20" y="360">Four hand-offs, each one a queue.</text>
+  <text class="s" x="20" y="376">Each lead sees only their own slice.</text>
+
+  <line class="lm" x1="450" y1="20" x2="450" y2="380"/>
+
+  <text class="h" x="470" y="24">One team: the signal meets a shared picture</text>
+  <rect class="bx" x="595" y="40" width="170" height="36" rx="4"/><text class="b m" x="680" y="63">Decision-maker</text>
+  <rect class="ba" x="560" y="150" width="240" height="56" rx="6"/>
+  <text class="b m ta" x="680" y="173">Common picture</text>
+  <text class="s m" x="680" y="192">everyone feeds it, everyone sees it</text>
+  <line class="lm" x1="515" y1="268" x2="590" y2="208"/>
+  <line class="lm" x1="597" y1="268" x2="635" y2="208"/>
+  <line class="lm" x1="679" y1="268" x2="680" y2="208"/>
+  <line class="lm" x1="761" y1="268" x2="725" y2="208"/>
+  <line class="lm" x1="843" y1="268" x2="770" y2="208"/>
+  <rect class="bx" x="478" y="270" width="74" height="34" rx="4"/><text class="s b m" x="515" y="291">Identity</text>
+  <rect class="bx" x="560" y="270" width="74" height="34" rx="4"/><text class="s b m" x="597" y="291">Network</text>
+  <rect class="bx" x="642" y="270" width="74" height="34" rx="4"/><text class="s b m" x="679" y="291">Cloud</text>
+  <rect class="bx" x="724" y="270" width="74" height="34" rx="4"/><text class="s b m" x="761" y="291">Monitoring</text>
+  <rect class="bx" x="806" y="270" width="74" height="34" rx="4"/><text class="s b m" x="843" y="291">Policy</text>
+  <line class="la" x1="761" y1="268" x2="728" y2="212" marker-end="url(#m6a)"/>
+  <line class="la" x1="588" y1="208" x2="519" y2="264" marker-end="url(#m6a)"/>
+  <circle class="ba" cx="756" cy="238" r="10"/><text class="s b m ta" x="756" y="242">1</text>
+  <circle class="ba" cx="540" cy="238" r="10"/><text class="s b m ta" x="540" y="242">2</text>
+  <line class="lm dash" x1="680" y1="148" x2="680" y2="80" marker-end="url(#m6)"/>
+  <text class="s" x="690" y="110">only if it answers</text>
+  <text class="s" x="690" y="125">a critical question</text>
+  <text class="s" x="470" y="360">Two steps. The identity team acts within its own authority.</text>
+  <text class="s" x="470" y="376">The leader hears only what they must.</text>
+</svg>
+</div>
+<figcaption>How a warning travels. On the left, at the speed of the organisation chart. On the right, at the speed of a shared picture.</figcaption>
+</figure>
+<p><strong>Services are framed as controls.</strong> Names like "vulnerability management" describe the mechanism, not what the business owner wants, which is to know where they are exposed in time to act. Framed as controls, services get measured by whether controls exist, and security starts behaving as if it owns the risk.</p>
+<p><strong>Risk decisions are made in the wrong place.</strong> A delayed patch or a policy exception is a risk decision, often taken quietly inside a team by someone who does not own the risk. Where security and technology share one leader, the business owner may never see it.</p>
+<p><strong>Policy does strategy's job.</strong> Strategy chooses what matters most and what will not be done; policy sets what must always or never happen. When a compliance list stands in for strategy, everything is equally important, so the department cannot go faster anywhere.</p>
+<p><strong>Everything escalates.</strong> When nobody has written down who may decide what, the safe choice is to escalate. Leaders become a bottleneck, buried in issues they need not see.</p>
+
+<h3 id="people">Managing people</h3>
+<p><strong>One person, three hats.</strong> The head of department is <strong>CISO</strong> (sets security policy and checks it is followed), <strong>service provider</strong> (runs services the business uses to meet that policy) and <strong>head of department</strong> (decides where money and people go). The first is an oversight role; the other two are doing and owning roles.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 370" role="img" aria-label="Three roles held by one person: CISO, service provider and head of department. Between each pair is a tension: the CISO assures the provider's own services; policy can bend to the department's budget; service quality competes with cost.">
+  <rect class="bx" x="270" y="20" width="220" height="70" rx="6"/>
+  <text class="h m" x="380" y="46">CISO</text>
+  <text class="s m" x="380" y="64">sets policy and assures it</text>
+  <text class="s m" x="380" y="80">second line: oversight</text>
+  <rect class="bx" x="30" y="270" width="220" height="70" rx="6"/>
+  <text class="h m" x="140" y="296">Service provider</text>
+  <text class="s m" x="140" y="314">runs services for the business</text>
+  <text class="s m" x="140" y="330">first line: a service</text>
+  <rect class="bx" x="510" y="270" width="220" height="70" rx="6"/>
+  <text class="h m" x="620" y="296">Head of department</text>
+  <text class="s m" x="620" y="314">invests, resources, runs</text>
+  <text class="s m" x="620" y="330">first line: its own risks</text>
+  <circle class="ba" cx="380" cy="200" r="48"/>
+  <text class="b m ta" x="380" y="196">One</text>
+  <text class="b m ta" x="380" y="213">person</text>
+  <line class="lm" x1="380" y1="90" x2="380" y2="152"/>
+  <line class="lm" x1="250" y1="285" x2="340" y2="228"/>
+  <line class="lm" x1="510" y1="285" x2="420" y2="228"/>
+  <line class="lw dash" x1="270" y1="70" x2="120" y2="268"/>
+  <line class="lw dash" x1="490" y1="70" x2="640" y2="268"/>
+  <line class="lw dash" x1="250" y1="320" x2="510" y2="320"/>
+  <text class="tw e" x="180" y="150">assures its</text>
+  <text class="tw e" x="180" y="166">own services</text>
+  <text class="tw" x="580" y="150">policy can bend</text>
+  <text class="tw" x="580" y="166">to the budget</text>
+  <text class="tw m" x="380" y="310">quality against cost</text>
+</svg>
+</div>
+<figcaption>Three roles, one person. Each conflict needs to be visible so it is settled in the open. Under a combined technology and security leader, two more roles are added and every tension sharpens.</figcaption>
+</figure>
+<p><strong>Measures count activity.</strong> Alerts closed and patches applied answer "are we busy?", not "is the business safe?". Goodhart's law applies: when a measure becomes a target, it stops being a good measure.</p>
+<p><strong>People fear reporting.</strong> Where risk and audit are seen as hunting for fault, problems stay hidden, and a department that cannot surface problems cannot learn.</p>
+<p><strong>Authority is unclear.</strong> Without written limits, people either take risks they should not or escalate everything. Both are exhausting.</p>
+<p><strong>Teams are reshuffled.</strong> Frequent reorganisations move people between boxes. People resist losing what made them effective more than they resist change. Stable teams that take on new work cope better.</p>
+<p><strong>All work is managed the same way.</strong> Repeatable work like granting access suits a production line. Expert work like incident response does not. Managing both alike frustrates everyone.</p>
+
+<h3 id="root">One root cause: designed in pieces</h3>
+<p>Each strain has a local fix, and departments try them one at a time. They rarely stick, because the pieces were designed separately and pull against each other. Galbraith's Star Model, explained in Part 3, makes this visible.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 420" role="img" aria-label="Galbraith's Star with today's strains. Strategy: compliance goals presented as strategy. Structure: teams grouped by tool, each owning its data. Processes: tickets over walls, everything escalates. Rewards: activity counted, honest alarms blamed. People: judgement unused, change fatigue. Centre: information split between teams.">
+  <polygon class="lm" points="380,80 517.9,180.2 465.2,342.3 294.8,342.3 242.1,180.2"/>
+  <line class="lm dash" x1="380" y1="225" x2="380" y2="80"/>
+  <line class="lm dash" x1="380" y1="225" x2="517.9" y2="180.2"/>
+  <line class="lm dash" x1="380" y1="225" x2="465.2" y2="342.3"/>
+  <line class="lm dash" x1="380" y1="225" x2="294.8" y2="342.3"/>
+  <line class="lm dash" x1="380" y1="225" x2="242.1" y2="180.2"/>
+  <circle class="bw" cx="380" cy="225" r="40"/>
+  <text class="s b m tw" x="380" y="221">Information</text>
+  <text class="s m tw" x="380" y="236">split by team</text>
+  <circle class="bx" cx="380" cy="80" r="36"/><text class="b m" x="380" y="85">Strategy</text>
+  <circle class="bx" cx="517.9" cy="180.2" r="36"/><text class="b m" x="517.9" y="185">Structure</text>
+  <circle class="bx" cx="465.2" cy="342.3" r="36"/><text class="b m" x="465.2" y="347">Processes</text>
+  <circle class="bx" cx="294.8" cy="342.3" r="36"/><text class="b m" x="294.8" y="347">Rewards</text>
+  <circle class="bx" cx="242.1" cy="180.2" r="36"/><text class="b m" x="242.1" y="185">People</text>
+  <text class="tw" x="428" y="62">Compliance goals</text>
+  <text class="tw" x="428" y="78">presented as strategy</text>
+  <text class="tw" x="566" y="176">Teams grouped by tool,</text>
+  <text class="tw" x="566" y="192">each owning its data</text>
+  <text class="tw" x="512" y="342">Tickets over walls;</text>
+  <text class="tw" x="512" y="358">everything escalates</text>
+  <text class="tw e" x="248" y="342">Activity counted;</text>
+  <text class="tw e" x="248" y="358">honest alarms blamed</text>
+  <text class="tw e" x="194" y="176">Judgement unused;</text>
+  <text class="tw e" x="194" y="192">change fatigue</text>
+  <text class="s m" x="380" y="405">Every point is out of line, and each one's fix is undone by the others.</text>
+</svg>
+</div>
+<figcaption>Today's strains on Galbraith's Star. The responding problems and the people problems are one problem seen from different points.</figcaption>
+</figure>
+</section>
+
+<section id="design" aria-labelledby="design-h">
+<h2 id="design-h"><span class="pn">Part 3</span>A common operating model, and what it takes to build one</h2>
+<p class="lead">The answer is a common operating model: one way of working shared by the department and the parts of the business it serves. It only comes about when service design, enterprise architecture and organisation design are done together.</p>
+
+<h3 id="three">Three disciplines, one design</h3>
+<p>An operating model describes how an organisation is set up to deliver its strategy: which capabilities matter most, what is done centrally, which forums decide what. Every such choice is also a technology choice and a service choice, so all three disciplines should write it together. A simple test: an architect, an organisation designer and a service designer should each be able to derive their own design from it. If not, it is a strategy statement.</p>
+<ul>
+<li><strong>Service design</strong> starts with the user, here the business owner, and what they are trying to do.</li>
+<li><strong>Enterprise architecture</strong> starts with what the organisation must be able to do, and the data and technology behind it.</li>
+<li><strong>Organisation design</strong> starts with how people are grouped, governed and motivated.</li>
+</ul>
+<p>Each discipline's blind spot is the other two. A service blueprint, which draws a service from what the user sees down to the systems underneath, shows where they meet.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 820 400" role="img" aria-label="Strategy and risk appetite at the top feed an operating model co-authored by all three disciplines. Below it are three layers: frontstage, led by service design; backstage, led by organisation design; and support, led by enterprise architecture. A single service cuts vertically through all three layers.">
+  <defs><marker id="m9" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="bx" x="20" y="16" width="780" height="44" rx="4"/>
+  <text class="b m" x="410" y="43">Strategy and risk appetite, set by the business</text>
+  <line class="ln" x1="410" y1="60" x2="410" y2="82" marker-end="url(#m9)"/>
+  <rect class="ba" x="20" y="84" width="780" height="48" rx="4"/>
+  <text class="b m ta" x="410" y="104">Operating model</text>
+  <text class="s m" x="410" y="122">written by all three disciplines together; owned by business operations</text>
+  <rect class="bx" x="20" y="150" width="780" height="60" rx="4"/>
+  <text class="b" x="40" y="176">Frontstage</text><text class="s" x="40" y="194">what the user meets: journeys and touchpoints</text>
+  <text class="b ta e" x="780" y="185">Service design</text>
+  <rect class="bx" x="20" y="220" width="780" height="60" rx="4"/>
+  <text class="b" x="40" y="246">Backstage</text><text class="s" x="40" y="264">teams, roles, hand-offs and decision rights</text>
+  <text class="b ta e" x="780" y="255">Organisation design</text>
+  <rect class="bx" x="20" y="290" width="780" height="60" rx="4"/>
+  <text class="b" x="40" y="316">Support</text><text class="s" x="40" y="334">processes, data, systems and platforms</text>
+  <text class="b ta e" x="780" y="325">Enterprise architecture</text>
+  <rect class="la dash" x="470" y="140" width="64" height="220" rx="4"/>
+  <text class="s m ta" x="502" y="380">one service cuts through every layer</text>
+</svg>
+</div>
+<figcaption>Each discipline leads one layer, and a service cuts through all three. The test is vertical: does the service work for its user from top to bottom?</figcaption>
+</figure>
+<p>A good service is desirable, feasible and viable. Service design speaks for the first, architecture the second, organisation design the third. Service design sets the test; the other two set the terms.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 440" role="img" aria-label="Triangle of three disciplines between strategy above and policy below. Service design speaks for desirability, enterprise architecture for feasibility, organisation design for viability. Each edge is a tension: variety against standards, journey against function, coherence against autonomy.">
+  <defs><marker id="m10" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkm"/></marker></defs>
+  <rect class="bx" x="120" y="12" width="520" height="38" rx="4"/>
+  <text class="b m" x="380" y="36">Strategy: where to spend the tension</text>
+  <line class="lm" x1="380" y1="50" x2="380" y2="72" marker-end="url(#m10)"/>
+  <rect class="ba" x="270" y="75" width="220" height="60" rx="6"/>
+  <text class="b m ta" x="380" y="100">Service design</text>
+  <text class="s m" x="380" y="120">desirable: does it work for the user?</text>
+  <rect class="bx" x="40" y="290" width="220" height="60" rx="6"/>
+  <text class="b m" x="150" y="315">Enterprise architecture</text>
+  <text class="s m" x="150" y="335">feasible: can we build and run it?</text>
+  <rect class="bx" x="500" y="290" width="220" height="60" rx="6"/>
+  <text class="b m" x="610" y="315">Organisation design</text>
+  <text class="s m" x="610" y="335">viable: can people sustain it?</text>
+  <line class="lw" x1="300" y1="135" x2="180" y2="290"/>
+  <line class="lw" x1="460" y1="135" x2="580" y2="290"/>
+  <line class="lw" x1="260" y1="320" x2="500" y2="320"/>
+  <text class="tw e" x="232" y="196">variety against</text>
+  <text class="tw e" x="232" y="212">standards</text>
+  <text class="tw" x="528" y="196">journey against</text>
+  <text class="tw" x="528" y="212">function</text>
+  <text class="tw m" x="380" y="310">coherence against autonomy</text>
+  <rect class="bx" x="120" y="392" width="520" height="38" rx="4"/>
+  <text class="b m" x="380" y="416">Policy and risk appetite: the limits that are not negotiable</text>
+  <line class="lm" x1="150" y1="392" x2="150" y2="354" marker-end="url(#m10)"/>
+  <line class="lm" x1="610" y1="392" x2="610" y2="354" marker-end="url(#m10)"/>
+</svg>
+</div>
+<figcaption>Three forces in tension. If one side wins outright, the failure is predictable: sprawling bespoke systems, users forced through the organisation chart, or a central bottleneck.</figcaption>
+</figure>
+
+<h3 id="conway">Conway's law</h3>
+<p>In 1968 Melvin Conway observed that organisations build systems that mirror their own communication structures. So if you design the architecture without the organisation, you have still designed both, one by accident. Used deliberately, it works the other way: shape the teams you want and the architecture follows.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 820 290" role="img" aria-label="Left: three separate teams each build their own tools and data, with no shared data between them. Right: one team with shared intent builds one joined system with a shared data and identity layer.">
+  <defs>
+    <marker id="m11" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+  </defs>
+  <text class="h" x="20" y="24">Separate teams build separate systems</text>
+  <rect class="bx" x="20" y="44" width="110" height="36" rx="4"/><text class="b m" x="75" y="67">Identity</text>
+  <rect class="bx" x="145" y="44" width="110" height="36" rx="4"/><text class="b m" x="200" y="67">Network</text>
+  <rect class="bx" x="270" y="44" width="110" height="36" rx="4"/><text class="b m" x="325" y="67">Monitoring</text>
+  <line class="ln" x1="75" y1="80" x2="75" y2="138" marker-end="url(#m11)"/>
+  <line class="ln" x1="200" y1="80" x2="200" y2="138" marker-end="url(#m11)"/>
+  <line class="ln" x1="325" y1="80" x2="325" y2="138" marker-end="url(#m11)"/>
+  <rect class="bg" x="20" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="32" y="152" width="86" height="28" rx="3"/><text class="s m" x="75" y="170">own tools</text>
+  <rect class="bx" x="32" y="190" width="86" height="28" rx="3"/><text class="s m" x="75" y="208">own data</text>
+  <rect class="bg" x="145" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="157" y="152" width="86" height="28" rx="3"/><text class="s m" x="200" y="170">own tools</text>
+  <rect class="bx" x="157" y="190" width="86" height="28" rx="3"/><text class="s m" x="200" y="208">own data</text>
+  <rect class="bg" x="270" y="140" width="110" height="90" rx="4"/>
+  <rect class="bx" x="282" y="152" width="86" height="28" rx="3"/><text class="s m" x="325" y="170">own tools</text>
+  <rect class="bx" x="282" y="190" width="86" height="28" rx="3"/><text class="s m" x="325" y="208">own data</text>
+  <line class="lw dash" x1="130" y1="185" x2="145" y2="185"/>
+  <line class="lw dash" x1="255" y1="185" x2="270" y2="185"/>
+  <text class="s tw" x="20" y="260">Three teams, three meshes, no shared meaning.</text>
+
+  <line class="lm" x1="410" y1="16" x2="410" y2="276"/>
+
+  <text class="h" x="440" y="24">One team builds one system</text>
+  <rect class="ba" x="440" y="44" width="360" height="36" rx="4"/><text class="b m ta" x="620" y="67">One team with shared intent</text>
+  <line class="ln" x1="620" y1="80" x2="620" y2="138" marker-end="url(#m11)"/>
+  <rect class="bx" x="440" y="140" width="100" height="44" rx="4"/><text class="s m" x="490" y="166">identity tools</text>
+  <rect class="bx" x="570" y="140" width="100" height="44" rx="4"/><text class="s m" x="620" y="166">network tools</text>
+  <rect class="bx" x="700" y="140" width="100" height="44" rx="4"/><text class="s m" x="750" y="166">monitoring</text>
+  <line class="la" x1="540" y1="162" x2="570" y2="162"/>
+  <line class="la" x1="670" y1="162" x2="700" y2="162"/>
+  <line class="la" x1="490" y1="184" x2="490" y2="200"/>
+  <line class="la" x1="620" y1="184" x2="620" y2="200"/>
+  <line class="la" x1="750" y1="184" x2="750" y2="200"/>
+  <rect class="ba" x="440" y="200" width="360" height="30" rx="4"/><text class="s m ta b" x="620" y="220">shared data, identity and definitions</text>
+  <text class="s ta" x="440" y="260">One team, one mesh, one meaning.</text>
+</svg>
+</div>
+<figcaption>Buying a platform that joins the tools does not join the teams. If the teams stay separate, the shared layer is shared only on paper.</figcaption>
+</figure>
+
+<h3 id="star">Galbraith's Star: the frame that holds it together</h3>
+<p>Jay Galbraith's Star Model says an organisation has five design points that must line up: <strong>strategy</strong> (direction and what will not be done), <strong>structure</strong> (grouping and who decides), <strong>processes</strong> (how work and information flow across teams), <strong>rewards</strong> (what is measured and recognised) and <strong>people</strong> (skills and development). Strategy comes first. Change one point alone and the others pull it back: a new structure with old rewards produces old behaviour in new boxes.</p>
+<p>The Star treats information and technology lightly, yet Galbraith also described organisations as information processing systems. So information is the Star's implied sixth point, at the centre. That is where architecture is strongest, while rewards and people, which architecture frameworks barely mention, are where organisation design is strongest.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 780 440" role="img" aria-label="Galbraith's Star with information and data at the centre as the sixth point. Strategy is set with the business and shared by all three disciplines. Structure: organisation design leads and architecture mirrors it. Processes: service design maps journeys and architecture maps value streams. Rewards and people: organisation design leads. Architecture leads the centre.">
+  <polygon class="ln" points="390,85 527.9,185.2 475.2,347.3 304.8,347.3 252.1,185.2"/>
+  <line class="la" x1="390" y1="230" x2="390" y2="85"/>
+  <line class="la" x1="390" y1="230" x2="527.9" y2="185.2"/>
+  <line class="la" x1="390" y1="230" x2="475.2" y2="347.3"/>
+  <line class="la" x1="390" y1="230" x2="304.8" y2="347.3"/>
+  <line class="la" x1="390" y1="230" x2="252.1" y2="185.2"/>
+  <circle class="ba" cx="390" cy="230" r="48"/>
+  <text class="s b m ta" x="390" y="222">Information</text>
+  <text class="s b m ta" x="390" y="237">and data</text>
+  <text class="s m" x="390" y="252">sixth point</text>
+  <circle class="bx" cx="390" cy="85" r="38"/><text class="b m" x="390" y="90">Strategy</text>
+  <circle class="bx" cx="527.9" cy="185.2" r="38"/><text class="b m" x="527.9" y="190">Structure</text>
+  <circle class="bx" cx="475.2" cy="347.3" r="38"/><text class="b m" x="475.2" y="352">Processes</text>
+  <circle class="bx" cx="304.8" cy="347.3" r="38"/><text class="b m" x="304.8" y="352">Rewards</text>
+  <circle class="bx" cx="252.1" cy="185.2" r="38"/><text class="b m" x="252.1" y="190">People</text>
+  <text x="440" y="66">Set with the business;</text>
+  <text class="s" x="440" y="82">all three disciplines share it</text>
+  <text x="578" y="181">Organisation design leads;</text>
+  <text class="s" x="578" y="197">architecture mirrors it</text>
+  <text x="522" y="345">Service design: journeys;</text>
+  <text class="s" x="522" y="361">architecture: value streams</text>
+  <text class="e" x="258" y="345">Organisation design leads;</text>
+  <text class="s e" x="258" y="361">architecture is silent here</text>
+  <text class="e" x="202" y="181">Organisation design leads;</text>
+  <text class="s e" x="202" y="197">skills for judgement</text>
+  <text class="s m" x="390" y="420">Pull on one point and the others move. Design them together, starting from strategy.</text>
+</svg>
+</div>
+<figcaption>The Star as the integrating frame. Each discipline is strong where another is weak; together they cover all six points.</figcaption>
+</figure>
+<p>The symbiosis is clearest when one decision is followed around the Star. Take the open question from earlier papers: organise by capability (identity, network, cloud) or by mission (protect payments)?</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 900 420" role="img" aria-label="One choice, organising around missions such as protecting payments, ripples to eight places: strategy, structure, processes, people, service design, rewards, enterprise architecture and measures.">
+  <defs><marker id="m13" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker></defs>
+  <rect class="ba" x="320" y="180" width="260" height="72" rx="6"/>
+  <text class="cap m" x="450" y="202">One choice</text>
+  <text class="b m ta" x="450" y="222">Organise around missions,</text>
+  <text class="b m ta" x="450" y="240">such as "protect payments"</text>
+
+  <rect class="bx" x="10" y="20" width="250" height="58" rx="5"/><text class="b" x="22" y="43">Strategy</text><text class="s" x="22" y="63">Missions trace to business intent</text>
+  <rect class="bx" x="325" y="20" width="250" height="58" rx="5"/><text class="b" x="337" y="43">Structure</text><text class="s" x="337" y="63">Mission teams with clear authority</text>
+  <rect class="bx" x="640" y="20" width="250" height="58" rx="5"/><text class="b" x="652" y="43">Processes</text><text class="s" x="652" y="63">Signals routed to the mission team</text>
+  <rect class="bx" x="10" y="187" width="250" height="58" rx="5"/><text class="b" x="22" y="210">People</text><text class="s" x="22" y="230">Broader skills, more judgement</text>
+  <rect class="bx" x="640" y="187" width="250" height="58" rx="5"/><text class="b" x="652" y="210">Service design</text><text class="s" x="652" y="230">A named owner for each service</text>
+  <rect class="bx" x="10" y="354" width="250" height="58" rx="5"/><text class="b" x="22" y="377">Rewards</text><text class="s" x="22" y="397">Credit for outcomes, not tickets</text>
+  <rect class="bx" x="325" y="354" width="250" height="58" rx="5"/><text class="b" x="337" y="377">Enterprise architecture</text><text class="s" x="337" y="397">Data and tools shared by missions</text>
+  <rect class="bx" x="640" y="354" width="250" height="58" rx="5"/><text class="b" x="652" y="377">Measures</text><text class="s" x="652" y="397">Time each service stays in appetite</text>
+
+  <line class="la" x1="350" y1="180" x2="210" y2="82" marker-end="url(#m13)"/>
+  <line class="la" x1="450" y1="180" x2="450" y2="82" marker-end="url(#m13)"/>
+  <line class="la" x1="550" y1="180" x2="690" y2="82" marker-end="url(#m13)"/>
+  <line class="la" x1="320" y1="216" x2="264" y2="216" marker-end="url(#m13)"/>
+  <line class="la" x1="580" y1="216" x2="636" y2="216" marker-end="url(#m13)"/>
+  <line class="la" x1="350" y1="252" x2="210" y2="350" marker-end="url(#m13)"/>
+  <line class="la" x1="450" y1="252" x2="450" y2="350" marker-end="url(#m13)"/>
+  <line class="la" x1="550" y1="252" x2="690" y2="350" marker-end="url(#m13)"/>
+</svg>
+</div>
+<figcaption>One decision touches eight places. It only holds if all of them move together.</figcaption>
+</figure>
+<p>The likely answer is both: keep capability teams as the home for skills and tools, and form mission teams across them for the services that matter most.</p>
+
+<h3 id="shape">The shape of the model: front, middle and back</h3>
+<p>Services face the business at the front. A security "factory" of capabilities sits in the middle, with separate expert cells for investigative work. Engineering, data and platforms sit at the back. Business operations runs across all three and owns the operating model, measured on keeping the layers in balance.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 380" role="img" aria-label="Business owners bring needs to the front layer of services and receive value from it. Behind it, the middle layer is a security factory of production lines, expert cells and a catalogue. Behind that, the back layer provides engineering, data and platforms. Business operations runs across all three layers.">
+  <defs><marker id="m14" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="bx" x="10" y="110" width="100" height="96" rx="6"/>
+  <text class="b m" x="60" y="146">Business</text>
+  <text class="b m" x="60" y="163">owners</text>
+  <text class="s m" x="60" y="182">the users</text>
+  <line class="ln" x1="110" y1="138" x2="148" y2="138" marker-end="url(#m14)"/>
+  <line class="ln" x1="148" y1="178" x2="112" y2="178" marker-end="url(#m14)"/>
+  <text class="s m" x="129" y="129">need</text>
+  <text class="s m" x="129" y="196">value</text>
+
+  <rect class="ba" x="150" y="24" width="200" height="268" rx="6"/>
+  <text class="b ta" x="164" y="48">Front: services</text>
+  <text class="s" x="164" y="66">owned by service owners</text>
+  <rect class="bx" x="164" y="82" width="172" height="38" rx="4"/><text class="s" x="174" y="105">Find and fix my weaknesses</text>
+  <rect class="bx" x="164" y="130" width="172" height="38" rx="4"/><text class="s" x="174" y="153">Help me change safely</text>
+  <rect class="bx" x="164" y="178" width="172" height="38" rx="4"/><text class="s" x="174" y="201">Tell me when it goes wrong</text>
+  <rect class="bx" x="164" y="226" width="172" height="38" rx="4"/><text class="s" x="174" y="249">Show I am within appetite</text>
+
+  <rect class="bx" x="370" y="24" width="220" height="268" rx="6"/>
+  <text class="b" x="384" y="48">Middle: security factory</text>
+  <text class="s" x="384" y="66">capabilities, quality, capacity</text>
+  <rect class="bg" x="384" y="82" width="192" height="54" rx="4"/><text class="s b" x="394" y="104">Production lines</text><text class="s" x="394" y="122">access, vetting, weaknesses</text>
+  <rect class="bd" x="384" y="146" width="192" height="54" rx="4"/><text class="s b" x="394" y="168">Expert cells</text><text class="s" x="394" y="186">intelligence, response, testing</text>
+  <rect class="bg" x="384" y="210" width="192" height="54" rx="4"/><text class="s b" x="394" y="232">Catalogue</text><text class="s" x="394" y="250">standard products, service levels</text>
+
+  <rect class="bx" x="610" y="24" width="200" height="268" rx="6"/>
+  <text class="b" x="624" y="48">Back: enabling</text>
+  <text class="s" x="624" y="66">what everything runs on</text>
+  <rect class="bg" x="624" y="82" width="172" height="38" rx="4"/><text class="s" x="634" y="105">Security engineering</text>
+  <rect class="bg" x="624" y="130" width="172" height="38" rx="4"/><text class="s" x="634" y="153">Data and analytics</text>
+  <rect class="bg" x="624" y="178" width="172" height="38" rx="4"/><text class="s" x="634" y="201">Platforms and tooling</text>
+
+  <line class="ln" x1="370" y1="158" x2="352" y2="158" marker-end="url(#m14)"/>
+  <line class="ln" x1="610" y1="158" x2="592" y2="158" marker-end="url(#m14)"/>
+
+  <line class="lm dash" x1="250" y1="292" x2="250" y2="312"/>
+  <line class="lm dash" x1="480" y1="292" x2="480" y2="312"/>
+  <line class="lm dash" x1="710" y1="292" x2="710" y2="312"/>
+  <rect class="bx" x="150" y="312" width="660" height="56" rx="6"/>
+  <text class="b" x="166" y="336">Business operations: people, plans, money, architecture, portfolio and governance</text>
+  <text class="s" x="166" y="355">owns the operating model; measured on the balance across the layers, not its own efficiency</text>
+</svg>
+</div>
+<figcaption>Front, middle and back mirror the service blueprint. Business operations is the connective tissue.</figcaption>
+</figure>
+
+<h3 id="rulebook">The business owns the risk</h3>
+<p>The firm's enterprise risk management framework is not one of the layers. It is a rulebook running through all of them, starting from the board's risk appetite.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 380" role="img" aria-label="The board's risk appetite flows into the enterprise risk framework, which runs vertically through four layers. At the operating model it decides which risks each part owns. In organisation design it fixes that the business owns risk and controls while security provides and challenges. In service design it defines the user's need to meet control obligations with least friction. In enterprise architecture it requires traceability from risk to service.">
+  <defs><marker id="m15" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkw"/></marker></defs>
+  <rect class="bw" x="215" y="12" width="180" height="38" rx="4"/><text class="b m tw" x="305" y="36">Board's risk appetite</text>
+  <line class="lw" x1="305" y1="50" x2="305" y2="72" marker-end="url(#m15)"/>
+  <rect class="bx" x="20" y="90" width="820" height="60" rx="4"/>
+  <rect class="bx" x="20" y="160" width="820" height="60" rx="4"/>
+  <rect class="bx" x="20" y="230" width="820" height="60" rx="4"/>
+  <rect class="bx" x="20" y="300" width="820" height="60" rx="4"/>
+  <text class="b" x="36" y="116">Operating model</text><text class="s" x="36" y="134">where work sits</text>
+  <text class="b" x="36" y="186">Organisation design</text><text class="s" x="36" y="204">who does what</text>
+  <text class="b" x="36" y="256">Service design</text><text class="s" x="36" y="274">what the user needs</text>
+  <text class="b" x="36" y="326">Enterprise architecture</text><text class="s" x="36" y="344">what it runs on</text>
+  <rect class="bw" x="280" y="74" width="50" height="296" rx="4"/>
+  <text class="b tw m" transform="translate(310 222) rotate(-90)">Enterprise risk framework</text>
+  <text x="350" y="125">Decides which risks each part of the firm owns</text>
+  <text x="350" y="195">The business owns risk and controls; security provides and challenges</text>
+  <text x="350" y="265">The user's need: meet control obligations with the least friction</text>
+  <text x="350" y="335">Traceability from each risk to its control, system and service</text>
+</svg>
+</div>
+<figcaption>The risk framework runs through every layer. NIST describes the controls well, but the framework that gives them purpose belongs to the business.</figcaption>
+</figure>
+<p>So services should be named for what the business owner is trying to do: "find and fix my weaknesses", not "vulnerability management". Each should state what security does and what the business must still do, and be judged by whether the business stays within appetite.</p>
+
+<h3 id="intent">Direction and freedom</h3>
+<p>The model only goes faster if people can act without waiting for permission. That needs a direction everyone can carry in their head and written limits on what each team may decide. This is where military experience adds most.</p>
+<div class="explain">
+<p class="tag">Military ideas · Intent, mission command and arcs of fire</p>
+<p><strong>Commander's intent</strong> is a short statement of what a mission must achieve and why, so people can act sensibly when the plan breaks. Each level writes its intent inside the one above, and people read intent two levels up. <strong>Mission command</strong> is the British Army's way of leading: say what and why, leave the how to those closest to the problem. An <strong>arc of fire</strong> is the sector a soldier may act in without asking, set in advance.</p>
+</div>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 880 384" role="img" aria-label="Left: intent nested from the firm to the payments business owner to the security department to a security team, which reads intent two levels up. Right: arcs of fire. Inside the inner arc, a team may act then tell: lock an account, isolate a laptop, block a bad web address. In the outer arc it must ask the business first: take a payment service offline, tell a regulator or customers.">
+  <text class="h" x="20" y="24">Intent, nested</text>
+  <rect class="bg" x="20" y="40" width="410" height="324" rx="6"/>
+  <text class="b" x="34" y="62">Firm</text>
+  <text class="s" x="34" y="78">Grow digital payments within appetite</text>
+  <rect class="bx" x="40" y="92" width="370" height="262" rx="6"/>
+  <text class="b" x="54" y="114">Payments business owner</text>
+  <text class="s" x="54" y="130">Customers can always pay; outages stay within tolerance</text>
+  <rect class="bg" x="60" y="146" width="330" height="198" rx="6"/>
+  <text class="b" x="74" y="168">Security department</text>
+  <text class="s" x="74" y="184">See threats early and act before harm is done</text>
+  <rect class="ba" x="80" y="200" width="290" height="134" rx="6"/>
+  <text class="b ta" x="94" y="222">Security team</text>
+  <text class="s" x="94" y="238">No attacker keeps a foothold in payments</text>
+  <text class="s ta" x="94" y="276">Reads intent two levels up:</text>
+  <text class="s ta" x="94" y="292">the department's, and the</text>
+  <text class="s ta" x="94" y="308">payments owner's</text>
+
+  <text class="h" x="470" y="24">Arcs of fire: authority set in advance</text>
+  <path class="bw" d="M801.2,270 L861.9,235 A210,210 0 0 0 498.1,235 L558.8,270 A140,140 0 0 1 801.2,270 Z"/>
+  <path class="ba" d="M680,340 L801.2,270 A140,140 0 0 0 558.8,270 Z"/>
+  <text class="b m tw" x="680" y="158">Ask the business first</text>
+  <text class="s m" x="680" y="176">Take a payment service offline</text>
+  <text class="s m" x="680" y="192">Tell a regulator or customers</text>
+  <text class="b m ta" x="680" y="232">Act, then tell</text>
+  <text class="s m" x="680" y="252">Lock an account</text>
+  <text class="s m" x="680" y="268">Isolate a laptop</text>
+  <text class="s m" x="680" y="284">Block a bad address</text>
+  <circle class="dota" cx="680" cy="340" r="5"/>
+  <text class="s m" x="680" y="360">the team</text>
+  <text class="s m" x="680" y="378">The business owner draws the line, in calm conditions.</text>
+</svg>
+</div>
+<figcaption>Intent is nested so a team can trace its purpose to the business. The arcs say in advance what a team may do alone. The wording is illustrative.</figcaption>
+</figure>
+<p>In a bank, the business's risk appetite is the natural source of the arcs, and the business owner draws them in calm conditions. As David Marquet warns in <em>Turn the Ship Around!</em>, authority can only be pushed down as fast as competence and clarity go with it, so arcs must be rehearsed.</p>
+
+<h3 id="loops">Two loops, one picture</h3>
+<p>With direction and freedom in place, the department can run continuously. A slow loop, <strong>Continuous Threat Exposure Management (CTEM)</strong>, keeps finding and fixing weaknesses that matter to the business. A fast loop stops attacks in progress.</p>
+<div class="explain">
+<p class="tag">Military idea · The OODA loop</p>
+<p>John Boyd's model of decision-making: observe, orient, decide, act. Boyd's key point was orientation. When people share the same understanding and intent, they can act without asking, so speed follows from shared understanding.</p>
+</div>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 410" role="img" aria-label="Business intent and risk appetite at the top sets direction for two loops. The exposure loop, CTEM, runs slowly and always: scope, discover, prioritise, validate, mobilise. The response loop runs fast during attacks: observe, orient, decide, act. Both feed and read one common picture. At the bottom, one team of security, technology, the business, suppliers and staff provides signals and takes actions.">
+  <defs>
+    <marker id="m17" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+    <marker id="m17a" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+  </defs>
+  <rect class="ba" x="20" y="16" width="820" height="50" rx="5"/>
+  <text class="b m ta" x="430" y="38">Business intent and risk appetite</text>
+  <text class="s m" x="430" y="56">what matters most, and how much risk is acceptable</text>
+  <line class="ln" x1="150" y1="66" x2="150" y2="142" marker-end="url(#m17)"/>
+  <line class="ln" x1="430" y1="66" x2="430" y2="164" marker-end="url(#m17)"/>
+  <line class="ln" x1="660" y1="66" x2="660" y2="122" marker-end="url(#m17)"/>
+
+  <circle class="la" cx="200" cy="200" r="72"/>
+  <polygon class="mka" points="194,122 207,128 194,134"/>
+  <text class="b m" x="200" y="192">Exposure loop</text>
+  <text class="s m" x="200" y="209">CTEM</text>
+  <text class="s m" x="200" y="224">slow, always on</text>
+  <text class="s b m" x="200" y="112">Scope</text>
+  <text class="s b" x="280" y="176">Discover</text>
+  <text class="s b" x="250" y="292">Prioritise</text>
+  <text class="s b e" x="150" y="292">Validate</text>
+  <text class="s b e" x="120" y="176">Mobilise</text>
+
+  <rect class="ba" x="340" y="168" width="180" height="64" rx="6"/>
+  <text class="b m ta" x="430" y="196">Common picture</text>
+  <text class="s m" x="430" y="214">one view for everyone</text>
+  <line class="la" x1="276" y1="200" x2="336" y2="200" marker-start="url(#m17a)" marker-end="url(#m17a)"/>
+  <line class="la" x1="524" y1="200" x2="584" y2="200" marker-start="url(#m17a)" marker-end="url(#m17a)"/>
+
+  <circle class="lw" cx="660" cy="200" r="72"/>
+  <polygon class="mkw" points="726,194 732,207 738,194"/>
+  <text class="b m" x="660" y="192">Response loop</text>
+  <text class="s m" x="660" y="209">OODA</text>
+  <text class="s m" x="660" y="224">fast, during attacks</text>
+  <text class="s b e" x="600" y="138">Observe</text>
+  <text class="s b" x="722" y="138">Orient</text>
+  <text class="s b" x="722" y="272">Decide</text>
+  <text class="s b e" x="600" y="272">Act</text>
+
+  <line class="ln" x1="186" y1="338" x2="186" y2="276" marker-end="url(#m17)"/>
+  <line class="ln" x1="214" y1="278" x2="214" y2="338" marker-end="url(#m17)"/>
+  <line class="ln" x1="646" y1="338" x2="646" y2="276" marker-end="url(#m17)"/>
+  <line class="ln" x1="674" y1="278" x2="674" y2="338" marker-end="url(#m17)"/>
+  <line class="ln" x1="430" y1="236" x2="430" y2="338" marker-start="url(#m17)" marker-end="url(#m17)"/>
+  <text class="s e" x="180" y="320">signals</text>
+  <text class="s" x="220" y="320">actions</text>
+  <text class="s e" x="640" y="320">signals</text>
+  <text class="s" x="680" y="320">actions</text>
+  <text class="s" x="438" y="292">fed by all</text>
+
+  <rect class="bx" x="20" y="342" width="820" height="54" rx="5"/>
+  <text class="b m" x="430" y="364">One team</text>
+  <text class="s m" x="430" y="382">security, technology, the business, suppliers and staff</text>
+</svg>
+</div>
+<figcaption>Both loops feed and read one picture, under one business intent, and act through a team that reaches beyond security.</figcaption>
+</figure>
+<p>The three hats also find their place. As CISO, the head of security helps the business set its intent and checks both loops stay within policy, with the risk function. As service provider, they run the picture and loops, reviewed with business owners. As head of department, they design the Star so the model can run. Business owners should always know which hat they are talking to.</p>
+</section>
+
+<section id="data" aria-labelledby="data-h">
+<h2 id="data-h"><span class="pn">Part 4</span>Data: a common view, not a common store</h2>
+<p class="lead">Data sits at the centre of the Star. The answer is not to pour it into one place, but to give everyone a common view: shared definitions, open access and a short list of questions that decides what matters.</p>
+
+<h3 id="hold">Three ways to hold the data</h3>
+<p>The signal in Figure 6 travelled slowly on the left because each team held its data in its own terms. The fix is shared meaning, not necessarily shared storage.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 900 300" role="img" aria-label="Three ways to hold security data. Keep it in each team: quick to start, but nobody sees the whole. Pour it into one central store: slow and costly, and still needs shared meaning. Share meaning and access: data stays where it is, but definitions and access are shared and a common view reads across it. The third is recommended.">
+  <defs><marker id="m18" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <text class="h" x="10" y="24">Keep it in each team</text>
+  <rect class="bg" x="10" y="38" width="280" height="190" rx="6"/>
+  <rect class="bx" x="28" y="110" width="40" height="32" rx="3"/><text class="s m" x="48" y="130">ID</text>
+  <rect class="bx" x="80" y="96" width="40" height="32" rx="3"/><text class="s m" x="100" y="116">Net</text>
+  <rect class="bx" x="132" y="124" width="40" height="32" rx="3"/><text class="s m" x="152" y="144">Cloud</text>
+  <rect class="bx" x="184" y="100" width="40" height="32" rx="3"/><text class="s m" x="204" y="120">SOC</text>
+  <rect class="bx" x="236" y="118" width="40" height="32" rx="3"/><text class="s m" x="256" y="138">Vuln</text>
+  <text class="s tw" x="10" y="252">Quick to start; each team's terms.</text>
+  <text class="s tw" x="10" y="268">Nobody sees the whole.</text>
+
+  <text class="h" x="310" y="24">Pour it into one store</text>
+  <rect class="bg" x="310" y="38" width="280" height="190" rx="6"/>
+  <rect class="bx" x="328" y="56" width="40" height="32" rx="3"/><text class="s m" x="348" y="76">ID</text>
+  <rect class="bx" x="380" y="56" width="40" height="32" rx="3"/><text class="s m" x="400" y="76">Net</text>
+  <rect class="bx" x="432" y="56" width="40" height="32" rx="3"/><text class="s m" x="452" y="76">Cloud</text>
+  <rect class="bx" x="484" y="56" width="40" height="32" rx="3"/><text class="s m" x="504" y="76">SOC</text>
+  <rect class="bx" x="536" y="56" width="40" height="32" rx="3"/><text class="s m" x="556" y="76">Vuln</text>
+  <line class="lm" x1="348" y1="88" x2="400" y2="148" marker-end="url(#m18)"/>
+  <line class="lm" x1="400" y1="88" x2="425" y2="148" marker-end="url(#m18)"/>
+  <line class="lm" x1="452" y1="88" x2="452" y2="148" marker-end="url(#m18)"/>
+  <line class="lm" x1="504" y1="88" x2="479" y2="148" marker-end="url(#m18)"/>
+  <line class="lm" x1="556" y1="88" x2="504" y2="148" marker-end="url(#m18)"/>
+  <rect class="bx" x="352" y="150" width="200" height="52" rx="6"/>
+  <text class="b m" x="452" y="173">One central store</text>
+  <text class="s m" x="452" y="190">copied, then cleaned</text>
+  <text class="s tw" x="310" y="252">Slow and costly to build.</text>
+  <text class="s tw" x="310" y="268">Still needs shared meaning to be useful.</text>
+
+  <text class="h ta" x="610" y="24">Share meaning and access</text>
+  <rect class="ba" x="610" y="38" width="280" height="190" rx="6"/>
+  <rect class="bx" x="660" y="52" width="180" height="34" rx="4"/>
+  <text class="b m ta" x="750" y="74">Common view</text>
+  <rect class="bx" x="628" y="124" width="40" height="32" rx="3"/><text class="s m" x="648" y="144">ID</text>
+  <rect class="bx" x="680" y="124" width="40" height="32" rx="3"/><text class="s m" x="700" y="144">Net</text>
+  <rect class="bx" x="732" y="124" width="40" height="32" rx="3"/><text class="s m" x="752" y="144">Cloud</text>
+  <rect class="bx" x="784" y="124" width="40" height="32" rx="3"/><text class="s m" x="804" y="144">SOC</text>
+  <rect class="bx" x="836" y="124" width="40" height="32" rx="3"/><text class="s m" x="856" y="144">Vuln</text>
+  <line class="lm" x1="648" y1="124" x2="690" y2="86"/>
+  <line class="lm" x1="700" y1="124" x2="720" y2="86"/>
+  <line class="lm" x1="752" y1="124" x2="750" y2="86"/>
+  <line class="lm" x1="804" y1="124" x2="780" y2="86"/>
+  <line class="lm" x1="856" y1="124" x2="810" y2="86"/>
+  <line class="la" x1="648" y1="156" x2="648" y2="176"/>
+  <line class="la" x1="700" y1="156" x2="700" y2="176"/>
+  <line class="la" x1="752" y1="156" x2="752" y2="176"/>
+  <line class="la" x1="804" y1="156" x2="804" y2="176"/>
+  <line class="la" x1="856" y1="156" x2="856" y2="176"/>
+  <rect class="bx" x="624" y="176" width="256" height="40" rx="4"/>
+  <text class="s b m ta" x="752" y="192">shared definitions, identity,</text>
+  <text class="s b m ta" x="752" y="208">critical questions, access rules</text>
+  <text class="s ta" x="610" y="252">Data stays where it is.</text>
+  <text class="s ta" x="610" y="268">Meaning and access are shared.</text>
+</svg>
+</div>
+<figcaption>The third option keeps data with the teams that know it best, while making it readable by everyone. It is cheaper than the second and more useful than the first.</figcaption>
+</figure>
+<div class="explain">
+<p class="tag">Military examples · Delta and JDN 1/23</p>
+<p><strong>Delta</strong> is Ukraine's live shared battlefield map, fed by units, drones, satellites and allies. Ukrainian officials say it cut the time from spotting a target to acting from up to 72 hours to about two minutes. It worked because everyone who contributes also benefits, and machines take the first look. The UK's 2023 guidance on intelligence gathering, <strong>JDN 1/23</strong>, says the effort should not be "artificially divided" by domain, and that making sense of information is "not subordinate to collection". The data does not belong to whoever collected it.</p>
+</div>
+
+<h3 id="spine">The data spine</h3>
+<p>Sharing everything creates a new problem: if everyone sees everything, nobody sees anything. The answer is a "data spine", a thin rigid structure everything else attaches to. It has three parts: a short list of critical questions, each with an owner and a decision; shared definitions (one identity per person and system, one list of critical services, one severity scale); and sorting rules for who must hear what, how fast.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 420" role="img" aria-label="The data spine. Intent and risk appetite set the critical questions, which shape the collection plan. Everything seen goes into the common picture. Each signal meets one test: does it answer a critical question? If yes, push it to the decision-maker now. If it falls within a team's mission, the team acts within its arc and records it. Otherwise record it without pushing. Decisions then refine the intent and questions.">
+  <defs>
+    <marker id="m19" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+    <marker id="m19m" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkm"/></marker>
+  </defs>
+  <rect class="ba" x="40" y="30" width="210" height="54" rx="5"/>
+  <text class="b m ta" x="145" y="53">Intent and risk appetite</text>
+  <text class="s m" x="145" y="71">set by the business</text>
+  <rect class="ba" x="320" y="30" width="210" height="54" rx="5"/>
+  <text class="b m ta" x="425" y="53">Critical questions</text>
+  <text class="s m" x="425" y="71">few, owned, dated</text>
+  <rect class="bx" x="600" y="30" width="220" height="54" rx="5"/>
+  <text class="b m" x="710" y="53">Collection plan</text>
+  <text class="s m" x="710" y="71">what every team watches first</text>
+  <line class="ln" x1="250" y1="57" x2="318" y2="57" marker-end="url(#m19)"/>
+  <line class="ln" x1="530" y1="57" x2="598" y2="57" marker-end="url(#m19)"/>
+  <line class="ln" x1="710" y1="84" x2="710" y2="148" marker-end="url(#m19)"/>
+
+  <rect class="ba" x="600" y="150" width="220" height="54" rx="5"/>
+  <text class="b m ta" x="710" y="173">Common picture</text>
+  <text class="s m" x="710" y="191">everything seen is recorded</text>
+  <line class="ln" x1="600" y1="177" x2="534" y2="177" marker-end="url(#m19)"/>
+
+  <polygon class="bx" points="430,127 530,177 430,227 330,177"/>
+  <text class="s b m" x="430" y="173">Does it answer a</text>
+  <text class="s b m" x="430" y="189">critical question?</text>
+  <line class="lm dash" x1="425" y1="84" x2="428" y2="124" marker-end="url(#m19m)"/>
+  <text class="s" x="440" y="110">sets the rule</text>
+
+  <polyline class="la" points="330,177 145,177 145,286" marker-end="url(#m19)"/>
+  <text class="s b ta" x="240" y="170">yes</text>
+  <line class="ln" x1="430" y1="227" x2="430" y2="286" marker-end="url(#m19)"/>
+  <text class="s b" x="438" y="262">within a mission</text>
+  <line class="lm" x1="480" y1="202" x2="704" y2="286" marker-end="url(#m19m)"/>
+  <text class="s b" x="600" y="236">neither</text>
+
+  <rect class="ba" x="40" y="290" width="210" height="58" rx="5"/>
+  <text class="b m ta" x="145" y="314">Push to the</text>
+  <text class="b m ta" x="145" y="332">decision-maker now</text>
+  <rect class="bx" x="320" y="290" width="220" height="58" rx="5"/>
+  <text class="b m" x="430" y="314">Team acts within</text>
+  <text class="b m" x="430" y="332">its arc, and records it</text>
+  <rect class="bg" x="600" y="290" width="220" height="58" rx="5"/>
+  <text class="b m" x="710" y="314">Record it,</text>
+  <text class="b m" x="710" y="332">don't push it</text>
+
+  <polyline class="lm dash" points="40,319 24,319 24,57 38,57" marker-end="url(#m19m)"/>
+  <text class="s" transform="translate(18 290) rotate(-90)">decisions refine intent and questions</text>
+  <text class="s m" x="430" y="392">Nothing is deleted. The filter decides what interrupts people, not what is kept.</text>
+</svg>
+</div>
+<figcaption>Intent goes down as questions; only answers come back up. Everything else is handled by the mission team or recorded. Nothing is deleted.</figcaption>
+</figure>
+
+<h3 id="ccir">Critical questions</h3>
+<div class="explain">
+<p class="tag">Military idea · CCIRs</p>
+<p>Commander's Critical Information Requirements are questions a leader says in advance they must have answered, because the answer changes a decision. They are "the things you wake the commander up for". Some ask about the threat, some about our own defences, and a related list says what the other side must never learn.</p>
+</div>
+<p>Good CCIRs are tied to a decision, answerable yes or no, specific, dated, and few. In a bank there are two kinds of "commander": business risk owners and the head of security. For payments, they might include:</p>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Critical question</th><th>Decision it serves</th></tr></thead>
+<tbody>
+<tr><td>Threat</td><td>Is there evidence an attacker has access to the live payments environment?</td><td>Switch to the backup payments route</td></tr>
+<tr><td>Own defences</td><td>Has monitoring covered less than the agreed share of payments systems for more than a day?</td><td>Fund extra monitoring, or pause a change</td></tr>
+<tr><td>Own defences</td><td>Has this incident met the threshold for a major incident?</td><td>Notify the regulator within DORA's hours</td></tr>
+<tr><td>Guard</td><td>Details of monitoring gaps and live investigations</td><td>Never shared outside need-to-know</td></tr>
+</tbody></table></div>
+<p>CCIRs complement key risk indicators: a KRI shows the trend, a CCIR says a decision is due. Triage then sorts signals by urgency in three sifts.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 760 320" role="img" aria-label="Triage funnel. All signals, millions a day, pass a machine sift against critical-question thresholds, leaving thousands. Mission teams judge those within their arcs, leaving tens. Only a handful reach the decision-maker because a critical question has been answered. Everything is kept in the picture.">
+  <text class="cap" x="600" y="14">Illustrative volumes</text>
+  <polygon class="bx" points="10,20 570,20 510,76 70,76"/>
+  <text class="b m" x="290" y="44">All signals</text>
+  <text class="s m" x="290" y="62">logs, alerts, reports from staff and suppliers</text>
+  <polygon class="bx" points="70,84 510,84 450,140 130,140"/>
+  <text class="b m" x="290" y="108">Machine sift</text>
+  <text class="s m" x="290" y="126">matched against critical-question thresholds</text>
+  <polygon class="bx" points="130,148 450,148 390,204 190,204"/>
+  <text class="b m" x="290" y="172">Mission team</text>
+  <text class="s m" x="290" y="190">judges within its arc</text>
+  <polygon class="ba" points="190,212 390,212 350,268 230,268"/>
+  <text class="b m ta" x="290" y="236">Decision-maker</text>
+  <text class="s m" x="290" y="254">questions answered</text>
+  <text class="s" x="600" y="52">millions a day</text>
+  <text class="s" x="600" y="116">thousands</text>
+  <text class="s" x="600" y="180">tens</text>
+  <text class="s ta b" x="600" y="244">a handful</text>
+  <text class="s m" x="380" y="304">Everything is kept in the common picture. Only urgency decides who is interrupted.</text>
+</svg>
+</div>
+<figcaption>Machines remove most noise; mission teams handle what falls in their arcs; leaders are interrupted only when a critical question is answered.</figcaption>
+</figure>
+
+<h3 id="trace">Traceability</h3>
+<p>Every security service should trace to a risk the business owns, through the control it supports and where that control lives. This chain lets a deferred fix reach the real risk owner, and shows where the CISO is assuring their own services.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 230" role="img" aria-label="Traceability chain. A risk the business owns, such as payment fraud through a taken-over account, is reduced by a control, such as strong sign-in for payment staff, which is built into the identity platform and payments application, which is run as a security service: give the right people the right access. Each link is usually held in a different place.">
+  <defs><marker id="m21" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <text class="s m" x="215" y="34">reduced by</text>
+  <text class="s m" x="430" y="34">built into</text>
+  <text class="s m" x="645" y="34">run as</text>
+  <rect class="bw" x="20" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="32" y="72">Risk the business owns</text>
+  <text class="s" x="32" y="96">payment fraud through</text>
+  <text class="s" x="32" y="112">a taken-over account</text>
+  <rect class="bx" x="235" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="247" y="72">Control</text>
+  <text class="s" x="247" y="96">strong sign-in for</text>
+  <text class="s" x="247" y="112">payment staff</text>
+  <rect class="bx" x="450" y="48" width="175" height="92" rx="5"/>
+  <text class="b" x="462" y="72">Where it lives</text>
+  <text class="s" x="462" y="96">identity platform and</text>
+  <text class="s" x="462" y="112">payments application</text>
+  <rect class="ba" x="665" y="48" width="175" height="92" rx="5"/>
+  <text class="b ta" x="677" y="72">Security service</text>
+  <text class="s" x="677" y="96">give the right people</text>
+  <text class="s" x="677" y="112">the right access</text>
+  <line class="ln" x1="195" y1="94" x2="233" y2="94" marker-end="url(#m21)"/>
+  <line class="ln" x1="410" y1="94" x2="448" y2="94" marker-end="url(#m21)"/>
+  <line class="ln" x1="625" y1="94" x2="663" y2="94" marker-end="url(#m21)"/>
+  <text class="s m" x="107" y="162">risk register</text>
+  <text class="s m" x="322" y="162">control library</text>
+  <text class="s m" x="537" y="162">architecture repository</text>
+  <text class="s m" x="752" y="162">service catalogue</text>
+  <text class="s m" x="430" y="198">Today each link sits in a different tool, owned by a different team.</text>
+  <text class="s m" x="430" y="214">Joined, they show controls with no service behind them, and services serving no named risk.</text>
+</svg>
+</div>
+<figcaption>Joined, the chain shows controls with no service behind them and services serving no named risk.</figcaption>
+</figure>
+
+<h3 id="measures">Measures: the mission, not the activity</h3>
+<p>Measures should show whether the mission is being achieved. The middle layer is new: it checks whether critical information reaches the right person in time, tracking delays, misses, false alarms and off-list escalations. Pair measures across each tension, such as exception requests alongside work-arounds found, so one side cannot hide its cost in another.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 820 300" role="img" aria-label="Three layers of measures. Mission: are the services we protect staying within appetite, read by the board and business owners. Spine, which is new: is critical information reaching the right person in time, read by the head of security and business owners. Activity: is each team doing its work well, read by team leads.">
+  <rect class="bx" x="20" y="20" width="780" height="76" rx="5"/>
+  <text class="cap" x="40" y="42">Mission</text>
+  <text class="b" x="40" y="62">Are the services we protect staying within appetite?</text>
+  <text class="s" x="40" y="82">time each critical service spent outside appetite or tolerance; losses against appetite</text>
+  <text class="s b e" x="780" y="62">Board, business owners</text>
+  <rect class="ba" x="20" y="112" width="780" height="76" rx="5"/>
+  <text class="cap" x="40" y="134">Spine · new</text>
+  <text class="b ta" x="40" y="154">Is critical information reaching the right person in time?</text>
+  <text class="s" x="40" y="174">time to decision-maker; misses; false alarms; off-list escalations; questions that never fire</text>
+  <text class="s b e" x="780" y="154">Head of security, owners</text>
+  <rect class="bx" x="20" y="204" width="780" height="76" rx="5"/>
+  <text class="cap" x="40" y="226">Activity</text>
+  <text class="b" x="40" y="246">Is each team doing its work well?</text>
+  <text class="s" x="40" y="266">alerts handled; weaknesses fixed by their due date; monitoring coverage</text>
+  <text class="s b e" x="780" y="246">Team leads</text>
+</svg>
+</div>
+<figcaption>Three layers of measure. The top matters to the business, the bottom stays with teams, and the middle tests the data spine.</figcaption>
+</figure>
+
+<h3 id="load">Information load, in Galbraith's terms</h3>
+<p>Galbraith's 1974 work explains why this hangs together. When uncertainty rises, an organisation must either reduce the information that flows up or increase its capacity to handle it. The data spine does both.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 860 320" role="img" aria-label="Galbraith's information processing view. Rising uncertainty means more information must reach decision-makers. Reduce the information that must flow up through slack resources, here room inside appetite and impact tolerances, and self-contained tasks, here mission teams acting within their arcs. Increase capacity through vertical information systems, here critical questions keeping the upward flow narrow, and lateral relations, here the common picture linking teams sideways.">
+  <rect class="bw" x="270" y="16" width="320" height="56" rx="5"/>
+  <text class="b m tw" x="430" y="39">Rising uncertainty</text>
+  <text class="s m" x="430" y="58">more information must reach decision-makers</text>
+  <line class="lm" x1="380" y1="72" x2="210" y2="110"/>
+  <line class="lm" x1="480" y1="72" x2="650" y2="110"/>
+  <rect class="bx" x="30" y="110" width="350" height="46" rx="5"/>
+  <text class="b m" x="205" y="138">Reduce the information that must flow up</text>
+  <rect class="bx" x="480" y="110" width="350" height="46" rx="5"/>
+  <text class="b m" x="655" y="138">Increase the capacity to handle it</text>
+  <line class="lm" x1="160" y1="156" x2="115" y2="196"/>
+  <line class="lm" x1="250" y1="156" x2="295" y2="196"/>
+  <line class="lm" x1="610" y1="156" x2="565" y2="196"/>
+  <line class="lm" x1="700" y1="156" x2="745" y2="196"/>
+  <rect class="bg" x="30" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="42" y="220">Slack resources</text>
+  <text class="s ta" x="42" y="256">room inside appetite</text>
+  <text class="s ta" x="42" y="272">and impact tolerances</text>
+  <rect class="bg" x="210" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="222" y="220">Self-contained</text>
+  <text class="b" x="222" y="236">tasks</text>
+  <text class="s ta" x="222" y="256">mission teams act</text>
+  <text class="s ta" x="222" y="272">within their arcs</text>
+  <rect class="bg" x="480" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="492" y="220">Vertical information</text>
+  <text class="b" x="492" y="236">systems</text>
+  <text class="s ta" x="492" y="256">critical questions keep</text>
+  <text class="s ta" x="492" y="272">the flow up narrow</text>
+  <rect class="bg" x="660" y="196" width="170" height="104" rx="5"/>
+  <text class="b" x="672" y="220">Lateral relations</text>
+  <text class="s ta" x="672" y="256">the common picture</text>
+  <text class="s ta" x="672" y="272">links teams sideways</text>
+</svg>
+</div>
+<figcaption>Galbraith's four ways to cope with information load, and the part of the model that delivers each.</figcaption>
+</figure>
+<p>One caution: a picture showing every weakness is also what an attacker most wants. It needs the strongest protection the firm has.</p>
+</section>
+
+<section id="whole" aria-labelledby="whole-h">
+<h2 id="whole-h"><span class="pn">Part 5</span>Bringing it together</h2>
+<p class="lead">Back on the Star, the operating model is one design: business intent above, its limits below, data at the centre and a specific job at each point.</p>
+<figure>
+<div class="fig-scroll">
+<svg class="dg" viewBox="0 0 820 480" role="img" aria-label="The whole operating model on Galbraith's Star. Above: business intent and risk appetite. Strategy: nested intent from the business, with appetite as the limit. Structure: front, middle and back, mission teams, and visible hats. Processes: two loops, one picture, triage and escalation. Rewards: credit for feeding the picture and for sound local calls. People: judgement within the arc, rehearsed in exercises. Centre: the data spine of questions, definitions and rules. Below: policy and the risk framework.">
+  <defs><marker id="m24" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker></defs>
+  <rect class="ba" x="160" y="12" width="500" height="40" rx="5"/>
+  <text class="b m ta" x="410" y="37">Business intent and risk appetite</text>
+  <line class="ln" x1="410" y1="52" x2="410" y2="67" marker-end="url(#m24)"/>
+  <polygon class="ln" points="410,105 543.1,201.7 492.3,358.3 327.7,358.3 276.9,201.7"/>
+  <line class="la" x1="410" y1="245" x2="410" y2="105"/>
+  <line class="la" x1="410" y1="245" x2="543.1" y2="201.7"/>
+  <line class="la" x1="410" y1="245" x2="492.3" y2="358.3"/>
+  <line class="la" x1="410" y1="245" x2="327.7" y2="358.3"/>
+  <line class="la" x1="410" y1="245" x2="276.9" y2="201.7"/>
+  <circle class="ba" cx="410" cy="245" r="60"/>
+  <text class="b m ta" x="410" y="237">Data spine</text>
+  <text class="s m" x="410" y="255">questions,</text>
+  <text class="s m" x="410" y="270">definitions, rules</text>
+  <circle class="bx" cx="410" cy="105" r="36"/><text class="b m" x="410" y="110">Strategy</text>
+  <circle class="bx" cx="543.1" cy="201.7" r="36"/><text class="b m" x="543.1" y="206">Structure</text>
+  <circle class="bx" cx="492.3" cy="358.3" r="36"/><text class="b m" x="492.3" y="363">Processes</text>
+  <circle class="bx" cx="327.7" cy="358.3" r="36"/><text class="b m" x="327.7" y="363">Rewards</text>
+  <circle class="bx" cx="276.9" cy="201.7" r="36"/><text class="b m" x="276.9" y="206">People</text>
+  <text class="b" x="458" y="92">Nested intent from the business</text>
+  <text class="s" x="458" y="108">appetite as the limit; what will not be done</text>
+  <text class="b" x="592" y="198">Front, middle and back</text>
+  <text class="s" x="592" y="214">mission teams; hats made visible</text>
+  <text class="b" x="540" y="356">Two loops, one picture</text>
+  <text class="s" x="540" y="372">triage, escalation, regular review</text>
+  <text class="b e" x="280" y="356">Credit for feeding the picture</text>
+  <text class="s e" x="280" y="372">and for sound local calls; no blame</text>
+  <text class="s e" x="280" y="386">for honest alarms</text>
+  <text class="b e" x="228" y="198">Judgement within the arc</text>
+  <text class="s e" x="228" y="214">built through exercises and rehearsal</text>
+  <line class="ln" x1="327.7" y1="428" x2="327.7" y2="398" marker-end="url(#m24)"/>
+  <line class="ln" x1="492.3" y1="428" x2="492.3" y2="398" marker-end="url(#m24)"/>
+  <rect class="bx" x="160" y="428" width="500" height="40" rx="5"/>
+  <text class="b m" x="410" y="453">Policy and the risk framework: the limits</text>
+</svg>
+</div>
+<figcaption>The common operating model on one page. The test of the whole is vertical: does each business service stay within appetite, and does its owner know when it might not?</figcaption>
+</figure>
+<p class="key">The business owns the risk. Security gives it the picture, the questions and the speed to stay within its appetite as the world accelerates.</p>
+
+<h3 id="start">Where to start</h3>
+<p>No big-bang reorganisation is needed. Start with one critical service, such as payments:</p>
+<ol>
+<li>Write the intent chain with the business owner.</li>
+<li>Agree the arcs: what security may do alone, and what goes to the owner first.</li>
+<li>Agree a handful of critical questions, alongside existing KRIs.</li>
+<li>Fix the shared definitions those questions depend on.</li>
+<li>Form one mission team across the existing capability teams.</li>
+<li>Start measuring time from a question being answered to the owner knowing.</li>
+<li>Give each of the three hats its own forum.</li>
+<li>Rehearse in an exercise, refine, and move to the next service.</li>
+</ol>
+
+<h3 id="limits">Where the military lessons stop</h3>
+<ul>
+<li><strong>The commander sits outside security.</strong> Priorities come from the business. Security runs the loops but cannot set their purpose.</li>
+<li><strong>The aim is to stay within limits, not to win.</strong> Sometimes the right answer is to accept a risk.</li>
+<li><strong>Faster is not always better.</strong> Taking payments offline in two minutes could do more harm than the attacker.</li>
+<li><strong>There are many commanders.</strong> Several business owners, risk, the board and regulators each need their own short list.</li>
+<li><strong>Someone must check independently.</strong> Risk and audit must see the questions and thresholds, so the filter never hides bad news.</li>
+</ul>
+
+<div class="feedback">
+<h3 id="open" style="margin-top:0">Have a taste: open questions</h3>
+<ul>
+<li>Which actions may security take alone, and who can move that line during an incident?</li>
+<li>Who owns the common picture: security, technology or the risk function?</li>
+<li>Who owns each set of critical questions, and how many can one owner carry? Do they belong in the risk framework or in security's procedures?</li>
+<li>How much triage can safely be automated?</li>
+<li>If a security service is late or poor, who carries the breach of appetite?</li>
+<li>Under a combined technology and security leader, how does the CISO role keep an independent line?</li>
+</ul>
+<p>Thoughts on any of these are very welcome. Drop me a line at <a href="mailto:you@example.com">you@example.com</a>.</p>
+</div>
+</section>
+
+<hr>
+
+<section id="glossary" aria-labelledby="glossary-h">
+<h2 id="glossary-h">Plain-English glossary</h2>
+<div class="tbl"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Arc of fire</td><td>The actions a team may take on its own authority, set in advance</td></tr>
+<tr><td>CCIR</td><td>A question a leader must have answered because the answer changes a decision</td></tr>
+<tr><td>CISO</td><td>Chief Information Security Officer: sets security policy and checks it is followed</td></tr>
+<tr><td>Commander's intent</td><td>A short statement of a mission's purpose and end state</td></tr>
+<tr><td>Conway's law</td><td>Organisations build systems that mirror their communication structures</td></tr>
+<tr><td>CTEM</td><td>Continuous Threat Exposure Management: constantly finding, ranking and fixing weaknesses that matter to the business</td></tr>
+<tr><td>Data spine</td><td>The agreed questions, shared definitions and sorting rules that carry critical information up and intent down</td></tr>
+<tr><td>DORA</td><td>The EU's Digital Operational Resilience Act for financial firms</td></tr>
+<tr><td>KRI</td><td>Key risk indicator: tracks a risk level over time against appetite</td></tr>
+<tr><td>Mission command</td><td>Leaders say what and why; people closest to the problem decide how</td></tr>
+<tr><td>OODA loop</td><td>Observe, orient, decide, act: Boyd's model of decision-making</td></tr>
+<tr><td>Operating model</td><td>How an organisation is set up to deliver its strategy</td></tr>
+<tr><td>Risk appetite</td><td>The amount and type of risk the board has chosen to accept</td></tr>
+<tr><td>Star Model</td><td>Galbraith's five design points: strategy, structure, processes, rewards, people</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Sources</h2>
+<h4>Companion papers in this series</h4>
+<ul class="sources">
+<li><a href="avoiding-accidental-design.html"><em>Designing the Whole</em></a></li>
+<li><a href="three-hats-one-appetite.html"><em>Security Within the Business's Risk Appetite</em></a></li>
+<li><a href="sensing-and-responding.html"><em>Sensing and Responding: Security as One Network</em></a></li>
+<li><a href="signal-not-noise.html"><em>Signal, Not Noise: CCIRs and the Data Spine</em></a></li>
+</ul>
+<h4>Opened for this paper and its predecessors</h4>
+<ul class="sources">
+<li>Google Cloud / Mandiant, <a href="https://cloud.google.com/blog/topics/threat-intelligence/time-to-exploit-trends-2023">How Low Can You Go? 2023 Time-to-Exploit Trends</a> (2024)</li>
+<li>eSecurity Planet, <a href="https://www.esecurityplanet.com/cybersecurity/crowdstrike-2025-threat-report-insights/">CrowdStrike 2025 Global Threat Report insights</a></li>
+<li>Austrian Financial Market Authority, <a href="https://www.fma.gv.at/en/dora-ict-related-incidents/">DORA: ICT-related incidents</a></li>
+<li>UK MOD, <a href="https://assets.publishing.service.gov.uk/media/641c27e15155a200136ad4df/JDN_1_23_ISR_web.pdf">JDN 1/23 Intelligence, Surveillance and Reconnaissance</a> (2023)</li>
+<li><a href="https://en.wikipedia.org/wiki/Delta_(situational_awareness_system)">Delta (situational awareness system)</a>, Wikipedia</li>
+<li>Armchair General, <a href="https://armchairgeneral.com/tactics-101-014-decision-making-and-the-power-of-commanders-critical-information-requirements.htm/3">Tactics 101: the power of CCIRs</a></li>
+<li>Wavell Room, <a href="https://wavellroom.com/2021/10/22/intent-statements-in-need-of-a-refresh/">Intent statements in need of a refresh</a></li>
+<li>Jay Galbraith, <a href="https://jaygalbraith.com/?p=57">Organization Design: An Information Processing View</a> (1974)</li>
+</ul>
+<h4>Books</h4>
+<ul class="sources">
+<li>Jay Galbraith, <em>Designing Dynamic Organizations</em>; Peter Cichocki, <em>Organization Design</em></li>
+<li>McMillan, Kesler and Kates, <em>Rethinking Operating Models</em>; Kates, Kesler and DiMartino, <em>Networked, Scaled and Agile</em></li>
+<li>Lou Downe, <em>Good Services</em>; Roger Burlton, <em>Business Architecture</em>; Eric Jager, <em>Mastering the TOGAF Standard</em></li>
+<li>Le-Brun and Werner, <em>The Octopus Organization</em>; Stephen Bungay, <em>The Art of Action</em>; David Marquet, <em>Turn the Ship Around!</em></li>
+<li>John Boyd, <em>The Essence of Winning and Losing</em>; Stanley McChrystal, <em>Team of Teams</em>; Richard Rumelt, <em>Good Strategy Bad Strategy</em></li>
+</ul>
+</section>
+<p style="margin-top:40px"><a href="index.html">&larr; Back to all ideas</a></p>
+</main>
+</div>
+
+  <footer>
+    <div class="wrap">
+      Half Baked &middot; ideas welcome, crumbs included.
+    </div>
+  </footer>
+
+</body>
+</html>
